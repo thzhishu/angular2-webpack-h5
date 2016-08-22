@@ -7,7 +7,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     ...ROUTER_DIRECTIVES
   ],
   template: require('./login.html'),
-  styles:[require('./login.scss')]
+  styles: [require('./login.scss')]
 })
 export class Login {
   constructor() {
