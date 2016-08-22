@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { MdButtonModule } from '@angular2-material/button/button';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -38,7 +40,8 @@ const APP_PROVIDERS = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true })
+    RouterModule.forRoot(ROUTES, { useHash: true }),
+    MdButtonModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     PLATFORM_PROVIDERS,
