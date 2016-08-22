@@ -19,7 +19,7 @@ export const ROUTES: Routes = [
       'yourData': DataResolver
     }},
   // async components with children routes must use WebpackAsyncRoute
-  { path: 'detail', component: 'Detail',
+  { path: 'login', component: 'Login',
     canActivate: [ WebpackAsyncRoute ],
     children: [
       { path: '', component: 'Index' }  // must be included
@@ -34,8 +34,8 @@ export const ROUTES: Routes = [
 const asyncRoutes: AsyncRoutes = {
   // we have to use the alternative syntax for es6-promise-loader to grab the routes
   'About': require('es6-promise-loader!./about'),
-  'Detail': require('es6-promise-loader!./+detail'),
-  'Index': require('es6-promise-loader!./+detail'), // must be exported with detail/index.ts
+  'Login': require('es6-promise-loader!./+login'),
+  'Index': require('es6-promise-loader!./+login'), // must be exported with detail/index.ts
 };
 
 
@@ -43,7 +43,7 @@ const asyncRoutes: AsyncRoutes = {
 // An array of callbacks to be invoked after bootstrap to prefetch async routes
 const prefetchRouteCallbacks: Array<IdleCallbacks> = [
   asyncRoutes['About'],
-  asyncRoutes['Detail'],
+  asyncRoutes['Login'],
    // es6-promise-loader returns a function
 ];
 
