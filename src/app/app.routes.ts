@@ -2,6 +2,7 @@ import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { Routes, RouterModule } from '@angular/router';
 import { Home } from './home';
 import { NoContent } from './no-content';
+import { Login,Index } from './+login';
 
 import { DataResolver } from './app.resolver';
 
@@ -11,20 +12,26 @@ import { providePrefetchIdleCallbacks } from '@angularclass/request-idle-callbac
 
 
 export const ROUTES: Routes = [
-  { path: '',      component: Home },
-  { path: 'home',  component: Home },
-  // make sure you match the component type string to the require in asyncRoutes
-  { path: 'about', component: 'About',
-    resolve: {
-      'yourData': DataResolver
-    }},
-  // async components with children routes must use WebpackAsyncRoute
-  { path: 'login', component: 'Login',
-    canActivate: [ WebpackAsyncRoute ],
+  { path: '', component: Home },
+  { path: 'home', component: Home },
+  {
+    path: 'login', component: Login,
     children: [
-      { path: '', component: 'Index' }  // must be included
-    ]},
-  { path: '**',    component: NoContent },
+      { path: '', component: Index }  // must be included
+    ]
+  },
+  // // make sure you match the component type string to the require in asyncRoutes
+  // { path: 'about', component: 'About',
+  //   resolve: {
+  //     'yourData': DataResolver
+  //   }},
+  // // async components with children routes must use WebpackAsyncRoute
+  // { path: 'login', component: 'Login',
+  //   canActivate: [ WebpackAsyncRoute ],
+  //   children: [
+  //     { path: '', component: 'Index' }  // must be included
+  //   ]},
+  { path: '**', component: NoContent },
 ];
 
 // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
@@ -44,7 +51,7 @@ const asyncRoutes: AsyncRoutes = {
 const prefetchRouteCallbacks: Array<IdleCallbacks> = [
   asyncRoutes['About'],
   asyncRoutes['Login'],
-   // es6-promise-loader returns a function
+  // es6-promise-loader returns a function
 ];
 
 
