@@ -1,8 +1,27 @@
-<section class="win">
+<div class="win">
     <div class="win-block">
         <header class="header header-default">
             <div class="title">登录</div>
             <a href="" class="btn btn-default btn-right">注册</a>
         </header>
+        <div class="content">
+            <div class="input-group">
+                <input type="text" class="input" name="name" value="" placeholder="请输入您的手机号码">
+            </div>
+            <div class="input-group">
+                <input type="text" class="input" name="name" value="" placeholder="请输入您的账号密码">
+            </div>
+            <div class="input-group">
+                <input type="text" class="input input-50" name="name" value="" placeholder="请输入右侧图形验证码">
+                <img [src]="img" alt="" class="input-img" />
+                <a href="" class="input-btn btn btn-link">换一张</a>
+            </div>
+        </div>
+        <div class="error">
+            我是一个错误
+        </div>
+        <div class="">
+            <button md-button md-raised-button color="primary" class="md-button-primary" type="button" name="button" >登录</button>
+        </div>
     </div>
-</section>
+</div>
