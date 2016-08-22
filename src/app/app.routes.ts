@@ -16,9 +16,9 @@ export const ROUTES: Routes = [
   { path: 'home', component: Home },
   {
     path: 'login', component: Login,
-    children: [
-      { path: '', component: Index }  // must be included
-    ]
+    // children: [
+    //   { path: '', component: Index }  // must be included
+    // ]
   },
   // // make sure you match the component type string to the require in asyncRoutes
   // { path: 'about', component: 'About',
@@ -40,17 +40,17 @@ export const ROUTES: Routes = [
 
 const asyncRoutes: AsyncRoutes = {
   // we have to use the alternative syntax for es6-promise-loader to grab the routes
-  'About': require('es6-promise-loader!./about'),
-  'Login': require('es6-promise-loader!./+login'),
-  'Index': require('es6-promise-loader!./+login'), // must be exported with detail/index.ts
+  // 'About': require('es6-promise-loader!./about'),
+  // 'Login': require('es6-promise-loader!./+login'),
+  // 'Index': require('es6-promise-loader!./+login'), // must be exported with detail/index.ts
 };
 
 
 // Optimizations for initial loads
 // An array of callbacks to be invoked after bootstrap to prefetch async routes
 const prefetchRouteCallbacks: Array<IdleCallbacks> = [
-  asyncRoutes['About'],
-  asyncRoutes['Login'],
+  // asyncRoutes['About'],
+  // asyncRoutes['Login'],
   // es6-promise-loader returns a function
 ];
 
