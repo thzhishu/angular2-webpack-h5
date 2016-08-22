@@ -6,9 +6,8 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   directives: [
     ...ROUTER_DIRECTIVES
   ],
-  template: `
-    <router-outlet></router-outlet>
-  `
+  template: require('./login.html'),
+  styles: [require('./login.scss')]
 })
 export class Login {
   constructor() {

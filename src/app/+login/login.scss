@@ -1,0 +1,22 @@
+.header{
+    line-height: 90px;
+    text-align: center;
+    font-size: 28px;
+}
+.header-default{
+    color: #fff;
+    background: url(/assets/img/header-bg.png);
+}
+.btn{
+    font-size: 24px;
+    border-radius: 4px;
+    padding: 12px 24px;
+}
+.btn-default{
+    color: #fff;
+    background: transparent;
+    border: 1px solid #fff;
+}
+.fr{
+    float: right;
+}
