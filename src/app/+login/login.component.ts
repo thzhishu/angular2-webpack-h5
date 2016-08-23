@@ -34,6 +34,12 @@ export class Login {
   constructor(private router: Router, private route: ActivatedRoute, private uApi: UserApi, private cApi: CommonApi, private sApi: ShopApi) {
     this.zone = new NgZone({ enableLongStackTrace: false }); // 事务控制器
   }
+
+  info(...args){
+      console.log(args);
+  }
+
+
   blur(data, e) {
     data.blur = e.type == 'blur';
   }
