@@ -130,7 +130,9 @@
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-md5-hash": "^0.0.5",
-    "webpack-merge": "^0.14.0"
+    "webpack-merge": "^0.14.0",
+    "moment": "^2.14.1",
+    "ts-md5": "^1.2.0"
   },
   "repository": {
     "type": "git",
