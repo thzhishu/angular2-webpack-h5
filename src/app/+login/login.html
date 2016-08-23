@@ -4,32 +4,41 @@
             <div class="title">登录</div>
             <a class="btn btn-default btn-right" routerLink="/register">注册</a>
         </header>
-        <form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
+        <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm" novalidate>
         <div class="content">
-            <div class="input-group" [class.error]="!phone?.valid&&loginForm.dirty">
-                <input type="text" class="input" name="phone" [(ngModel)]="user.phone" #phone="ngModel" required placeholder="请输入您的手机号码" pattern="^(13[0-9]|15[012356789]|17[0135678]|18[0-9]|14[57])[0-9]{8}$">
+            <div class="input-group" [class.error]="!phone?.valid&&false">
+                <input type="text" class="input" name="phone" [(ngModel)]="user.phone" maxlength="20"  #phone="ngModel" required placeholder="请输入您的手机号码" pattern="^(13[0-9]|15[012356789]|17[0135678]|18[0-9]|14[57])[0-9]{8}$">
             </div>
-            <div class="input-group" [class.error]="!pwd?.valid&&loginForm.dirty">
-                <input type="password" class="input" name="pwd" [(ngModel)]="user.pwd" #pwd="ngModel" required placeholder="请输入您的账号密码">
+            <div class="input-group" [class.error]="!pwd?.valid&&false">
+                <input type="password" class="input" name="pwd" [(ngModel)]="user.pwd" maxlength="20"  #pwd="ngModel" required placeholder="请输入您的账号密码">
             </div>
-            <div class="input-group" [class.error]="!rnd?.valid&&loginForm.dirty">
-                <input type="text" class="input input-50" name="rnd" [(ngModel)]="user.rnd" #rnd="ngModel" required placeholder="请输入右侧图形验证码">
+            <div class="input-group" [class.error]="!rnd?.valid&&false">
+                <input type="text" class="input input-50" name="rnd" maxlength="4" [(ngModel)]="user.rnd"  #rnd="ngModel" required placeholder="请输入右侧图形验证码">
                 <img [src]="img" alt="" class="input-img" (click)="onChangeCodeImg()" />
                 <a md-button color="primary" (click)="onChangeCodeImg()" class="input-btn btn btn-link">换一张</a>
             </div>
         </div>
-        {{info(rnd,pwd,phone)}}
+        <!-- {{info(loginForm)}} -->
         <div class="alert-error" *ngIf="errorMsg">
             {{errorMsg}}
         </div>
-        <div class="alert-error" *ngIf="!loginForm.valid&&!errorMsg&&loginForm.dirty">
-             <span *ngIf="phone.errors?.required">手机号码不能为空</span>
-             <span *ngIf="phone.errors?.pattern">请输入正确的手机号码</span>
-             <span *ngIf="pwd.errors?.required">账户密码不能为空</span>
-             <span *ngIf="rnd.errors?.required">验证码不能为空</span>
+        <!-- <div class="alert-error" *ngIf="errorMsg">
+            {{errorMsg}}
         </div>
+        <div class="alert-error" *ngIf="!errorMsg&&phone.errors?.required&&phone.blur">
+             手机号码不能为空
+        </div>
+        <div class="alert-error" *ngIf="!errorMsg&&phone.errors?.pattern&&phone.blur">
+             请输入正确的手机号码
+        </div>
+        <div class="alert-error" *ngIf="!errorMsg&&pwd.errors?.required&&pwd.blur">
+            账户密码不能为空
+        </div>
+        <div class="alert-error" *ngIf="!errorMsg&&rnd.errors?.required&&rnd.blur">
+            验证码不能为空
+        </div> -->
         <div class="btn-block">
-            <button type="submit" class="btn btn-primary" [disabled]="loginForm.submitted" >登录</button>
+            <button type="submit" class="btn btn-primary" [disabled]="loading" >登&nbsp;&nbsp;录</button>
         </div>
     </form>
     </div>

@@ -35,11 +35,6 @@ export class Login {
     this.zone = new NgZone({ enableLongStackTrace: false }); // 事务控制器
   }
 
-  info(...args){
-      console.log(args);
-  }
-
-
   blur(data, e) {
     data.blur = e.type == 'blur';
   }
@@ -75,9 +70,31 @@ export class Login {
   onChangeCodeImg() {
     this.getCodeImg();
   }
-  // 登录
-  onLogin() {
+  errorTip(f){
+    if(f.controls.phone.errors&&f.controls.phone.errors.required){
+        this.errorMsg = '手机号码不能为空';
+        return true;
+    }
+    if(f.controls.phone.errors&&f.controls.phone.errors.pattern){
+        this.errorMsg = '请输入正确的手机号码';
+        return true;
+    }
+    if(f.controls.pwd.errors&&f.controls.pwd.errors.required){
+        this.errorMsg = '账户密码不能为空';
+        return true;
+    }
+    if(f.controls.rnd.errors&&f.controls.rnd.errors.required){
+        this.errorMsg = '验证码不能为空';
+        return true;
+    }
     this.errorMsg = null;
+    return false;
+  }
+  // 登录
+  onLogin(f) {
+    if(this.errorTip(f)){
+        return false;
+    }
     this.loading = 1;
     let params = this.user;
     // mobile: string, password: string, code: string,
@@ -95,7 +112,7 @@ export class Login {
             this.router.navigate(['/dashbroad/business-list']);
           }
         } else {
-          this.errorWin(data.error.message);
+          this.errorMsg = data.error.message;
         }
       });
   }
