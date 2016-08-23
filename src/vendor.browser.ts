@@ -20,6 +20,10 @@ import '@angularclass/request-idle-callback';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
+import 'moment';
+import 'lodash';
+import 'ts-md5/dist/md5';
+
 if ('production' === ENV) {
   // Production
 

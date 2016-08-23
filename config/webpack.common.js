@@ -80,6 +80,12 @@ module.exports = {
     // remove other default values
     modulesDirectories: ['node_modules'],
 
+    alias: {
+        'client': helpers.root('src/client'),
+        'assets': helpers.root('src/assets'),
+        'services': helpers.root('src/app/services'),
+    },
+
   },
 
   /*
