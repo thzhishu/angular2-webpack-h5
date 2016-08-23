@@ -48,13 +48,10 @@ input{
   font-size: 24px;
 }
 .alert-error {
-  border: 1px solid rgb(241,101,87);
-  color: rgb(241,101,87);
-  background: rgba(241,101,87,.3);
-  font-size: 20px;
-  padding: 10px 20px;
-  border-radius: 4px;
-  margin: 10px 0;
+    color: #f16557;
+    font-size: 24px;
+    padding: 0 20px 10px;
+    margin-bottom: 10px;
 }
 .win {
   position: fixed;
