@@ -11,6 +11,7 @@ export class Home {
 	showContactUs: boolean = false;
 	current: boolean = false;
 	zone: any;
+	body: any;
 	constructor() {
 		this.zone = new NgZone({ enableLongStackTrace: false });
 	}
@@ -21,10 +22,12 @@ export class Home {
 				this.current = this.current ? false : true;
 			});
 		}, 5e3);
+		this.body = document.getElementsByTagName('body')[0];
 	}
 
 	onToggleMenu() {
 		this.showMenu = !this.showMenu;
+		this.showMenu ? this.body.addEventListener('touchmove', this.preventScroll) : this.body.removeEventListener('touchmove', this.preventScroll);
 	}
 
 	onToggleAboutUs() {
@@ -33,6 +36,10 @@ export class Home {
 
 	onToggleContactUs() {
 		this.showContactUs = !this.showContactUs;
+	}
+
+	preventScroll(e) {
+		e.preventDefault();
 	}
 
 }
