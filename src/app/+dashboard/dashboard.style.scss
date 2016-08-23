@@ -1,0 +1,87 @@
+.db {
+    width:100vw;
+    height: 100vh;
+    
+    position:relative;
+
+    .db-head {
+        
+        height:161px;
+        background:url(/assets/img/dashboard/bg.png) no-repeat top center;
+
+        .db-topbar {
+            padding: 13px 24px 0;
+        }
+
+        .menu-ico {
+            span {
+                &:last-child {
+                    width:17px;
+                }
+
+            }
+            &.active {
+                span {
+                     &:last-child{
+                         width:100%;
+                     }
+                }
+            }
+        }
+
+        .store {
+            width: 226px;
+            height:50px;
+            margin: 0 auto;
+            background:rgba(0, 0, 0, .4);
+            border-radius:25px;
+            padding:0 21px 0 26px;
+            font-size:22px;
+            color:#fff;
+
+            .ico-map {
+                width:18px;
+                height:24px;
+                background:url(/assets/img/dashboard/ico.png) no-repeat -5px -5px;
+            }
+            .flex-1 {
+                margin: 0 5px;
+            }
+            .ico-arrow-d {
+                width:14px;
+                height:11px;
+                background:url(/assets/img/dashboard/ico.png) no-repeat -91px -12px;
+            }
+        }
+
+        .search {
+            width: 48px;
+            height:48px;
+            border-radius:50%;
+            background:rgba(0, 0, 0, .4) url(/assets/img/dashboard/ico.png) no-repeat -161px 7px;
+        }
+    }
+
+    .db-title {
+        margin-top:32px;
+        font-size:28px;
+        color:#fff;
+        padding:0 34px;
+
+        .bw {
+            width:35px;
+            height:35px;
+        }
+        .flex-1 {
+            margin:0 8px;
+        }
+    }
+}
+
+.db {
+    .db-c {
+        overflow: auto;
+        -webkit-overflow-scrolling:touch;
+        
+    }
+}

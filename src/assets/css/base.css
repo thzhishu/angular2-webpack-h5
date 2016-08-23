@@ -5,6 +5,9 @@ html {
 body {
   margin: 0;
   font-family: "Microsoft YaHei", Helvetica,Arial,"Lucida Grande",sans-serif, 华文细黑, STHeiti, SimHei;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
 }
 article,
 aside,
@@ -285,5 +288,69 @@ th {
   bottom:0;
   left:0;
   background:url(/assets/img/loading.gif) no-repeat center center;
+}
+
+/** css ico **/
+.menu-ico {
+    position:relative;
+    width: 36px;
+    height: 30px;
+    font-size:0;
+}
+.menu-ico span {
+    display:block;
+    position:absolute;
+    height: 4px;
+    background: #fff;
+    left:0; 
+    right:0;
+    -webkit-transition: all .3s linear;
+    transition: all .3s linear;
+}
+.menu-ico span:first-child { top: 0; }
+.menu-ico span:last-child { bottom: 0; }
+.menu-ico span:nth-child(2) { 
+    top:50%;
+    margin-top:-2px;
+    opacity:1;
+}
+.menu-ico.active span:first-child {
+    top:50%;
+    margin-top:-2px;
+    -webkit-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+.menu-ico.active span:last-child {
+    bottom:50%;
+    margin-bottom:-2px;
+    -webkit-transform:rotate(-45deg);
+    transform:rotate(-45deg);
+}
+.menu-ico.active span:nth-child(2) {
+    opacity:0;
+}
+
+.add-ico {
+    position:relative;
+    width:35px;
+    height:35px;
+}
+.add-ico:before, .add-ico:after {
+    position:absolute;
+    display:block;
+    content: '';
+    background:#fff;
+}
+.add-ico:before {
+    width:100%;
+    height:5px;
+    top:15px;
+    left:0;
+}
+.add-ico:after {
+  width:5px;
+  height:100%;
+  top:0;
+  left:15px;
 }
 
