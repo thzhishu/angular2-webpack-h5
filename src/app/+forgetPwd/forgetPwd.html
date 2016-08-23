@@ -41,6 +41,14 @@
             <button type="submit" class="btn btn-primary" [disabled]="loading" >确认提交</button>
         </div>
         </form>
-        <a md-button color="primary" routerLink="/login" class="input-btn btn btn-link find-mima">又想起来了</a>
+        <a md-button color="primary" routerLink="/login" *ngIf="next!==3" class="input-btn btn btn-link find-mima">又想起来了</a>
+        <div class="layout">
+            <div class="success-block">
+                <img src="/assets/img/forget-success.png" alt="" />
+                <div class="success-title">
+                    密码设置成功,请<a routerLink="/login" class="text-primary">重新登录</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

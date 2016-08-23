@@ -168,8 +168,9 @@ export class ForgetPwd {
       .subscribe(data => {
         this.loading = 0;
         if (data.meta.code === 200) {
-          alert('密码修改成功');
-          this.router.navigate(['/login']);
+            this.next = 3;
+        //   alert('密码修改成功');
+        //   this.router.navigate(['/login']);
         } else {
           this.errorMsg = data.error.message;
         }
