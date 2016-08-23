@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { Home } from './home';
 import { NoContent } from './no-content';
 import { Login,Index } from './+login';
+import { Register } from './+register';
 
 import { DataResolver } from './app.resolver';
 
@@ -16,6 +17,12 @@ export const ROUTES: Routes = [
   { path: 'home', component: Home },
   {
     path: 'login', component: Login,
+    // children: [
+    //   { path: '', component: Index }  // must be included
+    // ]
+  },
+  {
+    path: 'register', component: Register,
     // children: [
     //   { path: '', component: Index }  // must be included
     // ]
