@@ -1,14 +1,14 @@
 <div class="home">
 	<header class="pr">
 		<div class="pa logo"></div>
-		<div class="pa tc txt active">每次服务，顾客评分，客观公正</div>
-		<div class="pa tc txt">每周总结，红包奖励，公平公开</div>
+		<div class="pa tc txt txt-1" [class.active]="!current">每次服务，顾客评分，客观公正</div>
+		<div class="pa tc txt txt-2" [class.active]="current">每周总结，红包奖励，公平公开</div>
 		<div class="pa btn tc">
 			<a href="">免费注册</a>
 		</div>
 		<div class="pa dots tc">
-			<span class="active"></span>
-			<span></span>
+			<span [class.active]="!current"></span>
+			<span [class.active]="current"></span>
 		</div>
 		<div class="pf full menu" *ngIf="showMenu">
 			<div class="btns">
@@ -16,15 +16,15 @@
 				<a href="" class="login">登录</a>
 			</div>
 			<div class="nav">
-				<a href="" class="box box-h box-h-c">
+				<a routerLink="/" class="box box-h box-h-c">
 					<div class="flex-1">首页</div>
 					<div class="bw"></div>
 				</a>
-				<a href="" class="box box-h box-h-c">
+				<a href="http://www.thzhishu.com/gw/about-us.html" class="box box-h box-h-c">
 					<div class="flex-1">关于我们</div>
 					<div class="bw"></div>
 				</a>
-				<a href="" class="box box-h box-h-c">
+				<a href="http://www.thzhishu.com/gw/contact-us.html" class="box box-h box-h-c">
 					<div class="flex-1">联系我们</div>
 					<div class="bw"></div>
 				</a>
@@ -107,5 +107,81 @@
 			</div>
 		</div>
 	</div>
+	<div class="tc b-txt">
+		<h1>帮助门店主获得</h1>
+		<p>
+			解放店主，激励员工，改进服务
+		</p>
+	</div>
+	<div class="ico-txt ">
+		<div class="box box-h">
+			<div class="flex-1 box box-v box-v-cc">
+				<div class="ico ico-home-time"></div>
+				<div class="tc">更多家庭时间</div>
+			</div>
+			<div class="flex-1 box box-v box-v-cc">
+				<div class="ico ico-person-time"></div>
+				<div class="tc">更多个人时间</div>
+			</div>
+		</div>
+		<div class="box box-h">
+			<div class="flex-1 box box-v box-v-cc">
+				<div class="ico ico-cash"></div>
+				<div class="tc">更多现金收入</div>
+			</div>
+			<div class="flex-1 box box-v box-v-cc">
+				<div class="ico ico-store"></div>
+				<div class="tc">更多连锁门店</div>
+			</div>
+		</div>
+	</div>
+	<div class="safe tc">
+		<div class="tc b-txt">
+			<h1>数据安全与保障</h1>
+			<p>
+				采用数据分析行业最高标准的技术与配套设施
+			</p>
+		</div>
+		<div class="ico-box">
+			<div class="ico-box-ali"></div>
+			<p>数据存储在安全级别高的阿里云</p>
+		</div>
+		<div class="ico-box">
+			<div class="ico-box-mi"></div>
+			<p>账户相关数据全部采用128位加密</p>
+		</div>
+		<div class="ico-box">
+			<div class="ico-box-valid"></div>
+			<p>整备全备异地的备份策略确保数据有效性</p>
+		</div>
+	</div>
+
+	<footer>
+		<div class="fmenu">
+			<div>
+				<a routerLink="/">首页</a>
+			</div>
+			<div [class.active]="showAboutUs">
+				<a href="javascript:;" (click)="onToggleAboutUs()" >关于我们</a>
+				<div>
+					<a href="http://www.thzhishu.com/gw/about-us.html">产品介绍</a>
+					<a href="http://www.thzhishu.com/gw/company-intro.html">公司介绍</a>
+					<a href="http://www.thzhishu.com/gw/join-us.html">加入我们</a>
+				</div>
+			</div>
+			<div [class.active]="showContactUs">
+				<a href="javascript:;" (click)="onToggleContactUs()" >联系我们</a>
+				<div>
+					联系人：张小姐 <br>
+					电话：（86）021-51210418-813 <br>
+					Email：ekin.zhang@mytianhui.com
+				</div>
+			</div>
+		</div>
+		<div class="tc copyright">
+			上海皓煦数据技术有限公司 沪ICP备08012157号-5 <br>
+			2006-2016 All rights reserved
+		</div>
+	</footer>
 		
 </div>
