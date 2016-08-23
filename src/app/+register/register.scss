@@ -38,12 +38,19 @@ input{
   color: #fff;
   width: 100%;
 }
+.btn-info{
+    padding: 6px 24px;
+    background: #fff;
+    color: #3fb648;
+    border: 1px solid #3fb648;
+}
 .btn-right {
   position: absolute;
   right: 15px;
   top: 18px;
 }
 .btn-link {
+  padding: 12px 24px;
   color: #3fb648;
   font-size: 24px;
 }
@@ -102,6 +109,11 @@ input{
     right: 7px;
     top: 7px;
   }
+  .input-btn-info{
+      position: absolute;
+      right: 25px;
+      top: 11px;
+  }
 }
 .md-primary[md-button] {
   color: #3fb648;
@@ -117,4 +129,14 @@ input{
 .find-mima{
     margin-top: 20px;
     text-decoration: underline;
+}
+.text-default{
+    color: #777;
+}
+.text-primary{
+    color: #3fb648;
+}
+.text-group{
+    padding: 25px 20px;
+    font-size: 24px;
 }

@@ -2,8 +2,12 @@ import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { Routes, RouterModule } from '@angular/router';
 import { Home } from './home';
 import { NoContent } from './no-content';
-import { Login, Index } from './+login';
+
 import { Dashboard, CustomerList } from './+dashboard';
+
+import { Login, Index } from './+login';
+import { Register } from './+register';
+
 
 import { DataResolver } from './app.resolver';
 
@@ -34,6 +38,12 @@ export const ROUTES: Routes = [
           ]
       }
     ]
+  },
+  {
+    path: 'register', component: Register,
+    // children: [
+    //   { path: '', component: Index }  // must be included
+    // ]
   },
   // // make sure you match the component type string to the require in asyncRoutes
   // { path: 'about', component: 'About',
