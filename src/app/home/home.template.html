@@ -4,7 +4,7 @@
 		<div class="pa tc txt txt-1" [class.active]="!current">每次服务，顾客评分，客观公正</div>
 		<div class="pa tc txt txt-2" [class.active]="current">每周总结，红包奖励，公平公开</div>
 		<div class="pa btn tc">
-			<a href="">免费注册</a>
+			<a routerLink="/register">免费注册</a>
 		</div>
 		<div class="pa dots tc">
 			<span [class.active]="!current"></span>
@@ -12,8 +12,8 @@
 		</div>
 		<div class="pf full menu" *ngIf="showMenu">
 			<div class="btns">
-				<a href="" class="register">注册</a>
-				<a href="" class="login">登录</a>
+				<a routerLink="/register" class="register">注册</a>
+				<a routerLink="/login" class="login">登录</a>
 			</div>
 			<div class="nav">
 				<a routerLink="/" class="box box-h box-h-c">
