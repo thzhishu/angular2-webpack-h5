@@ -1,18 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
 @Component({
-	selector: 'home', 
+	selector: 'home',
 	styles: [ require('./home.style.scss') ],
 	template: require('./home.template.html')
 })
 export class Home {
 	showMenu: boolean = false;
-	constructor() {}
+	showAboutUs: boolean = false;
+	showContactUs: boolean = false;
+	current: boolean = false;
+	zone: any;
+	constructor() {
+		this.zone = new NgZone({ enableLongStackTrace: false });
+	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		window.setInterval(() => {
+			this.zone.run(() => {
+				this.current = this.current ? false : true;
+			});
+		}, 5e3);
+	}
 
 	onToggleMenu() {
 		this.showMenu = !this.showMenu;
+	}
+
+	onToggleAboutUs() {
+		this.showAboutUs = !this.showAboutUs;
+	}
+
+	onToggleContactUs() {
+		this.showContactUs = !this.showContactUs;
 	}
 
 }
