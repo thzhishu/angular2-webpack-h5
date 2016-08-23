@@ -4,6 +4,7 @@ import { Home } from './home';
 import { NoContent } from './no-content';
 import { Login,Index } from './+login';
 import { Register } from './+register';
+import { ForgetPwd } from './+forgetPwd';
 
 import { DataResolver } from './app.resolver';
 
@@ -23,6 +24,12 @@ export const ROUTES: Routes = [
   },
   {
     path: 'register', component: Register,
+    // children: [
+    //   { path: '', component: Index }  // must be included
+    // ]
+  },
+  {
+    path: 'forget-pwd', component: ForgetPwd,
     // children: [
     //   { path: '', component: Index }  // must be included
     // ]
