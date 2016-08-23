@@ -2,9 +2,13 @@ import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { Routes, RouterModule } from '@angular/router';
 import { Home } from './home';
 import { NoContent } from './no-content';
-import { Login,Index } from './+login';
+
+import { Dashboard, CustomerList } from './+dashboard';
+
+import { Login, Index } from './+login';
 import { Register } from './+register';
 import { ForgetPwd } from './+forgetPwd';
+
 
 import { DataResolver } from './app.resolver';
 
@@ -21,6 +25,20 @@ export const ROUTES: Routes = [
     // children: [
     //   { path: '', component: Index }  // must be included
     // ]
+  },
+  {
+    path: 'dashboard',
+    component: Dashboard,
+    children: [
+      {path: '', redirectTo: 'customer/list', pathMatch: 'full'},
+      {
+          path: 'customer',
+          children: [
+              { path: '', redirectTo: 'list', pathMatch: 'full'},
+              { path: 'list', component: CustomerList }
+          ]
+      }
+    ]
   },
   {
     path: 'register', component: Register,
