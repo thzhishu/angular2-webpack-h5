@@ -109,7 +109,7 @@ export class Login {
             this.router.navigate(['/init-store']);
           } else {
             this.sApi.defaultHeaders.set('shopId', data.data.User.lastShopId);
-            this.router.navigate(['/dashbroad/business-list']);
+            this.router.navigate(['/dashboard/business/list']);
           }
         } else {
           this.errorMsg = data.error.message;
