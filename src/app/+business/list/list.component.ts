@@ -11,7 +11,7 @@ import { UserApi, CommonApi, ShopApi, UserResponse, LoginReq } from 'client';
 import { Cookie } from 'services';
 
 @Component({
-  selector: 'business',
+  selector: 'business-list',
   directives: [
     ...ROUTER_DIRECTIVES
   ],
@@ -19,7 +19,7 @@ import { Cookie } from 'services';
   styles: [require('./list.scss')],
   providers: [HTTP_PROVIDERS, UserApi, CommonApi, ShopApi, Md5, Cookie]
 })
-export class Business {
+export class BusinessList {
   loginForm: ControlGroup;
   zone: any;
   user: LoginReq = { phone: '', rnd: '', pwd: '' };
