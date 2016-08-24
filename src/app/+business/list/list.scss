@@ -118,3 +118,14 @@ input{
     margin-top: 20px;
     text-decoration: underline;
 }
+.time-block{
+    background: #d7d7d7;
+    color:#343434;
+    padding: 10px;
+    .fl{
+        float: left;
+    }
+    .fr{
+        float: right;
+    }
+}
