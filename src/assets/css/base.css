@@ -289,6 +289,9 @@ th {
   left:0;
   background:url(/assets/img/loading.gif) no-repeat center center;
 }
+.thide {
+  display:none;
+}
 
 /** css ico **/
 .menu-ico {
@@ -354,3 +357,45 @@ th {
   left:15px;
 }
 
+/** 列表 **/
+.list-table {
+  display:block;
+  width:100%;
+  overflow:hidden;
+  text-align: center;
+}
+.list-ths {
+  font-size:22px;
+}
+.list-tds {
+  font-size: 18px;
+}
+.list-tr { position: relative;}
+.list-table .list-edit, .list-table .list-del { 
+  position:absolute; 
+  width:105px;
+  height:78px;
+  color:#fff;
+  text-align: center;
+  line-height: 78px;
+  background:#8cc63f;
+  top:0;
+  right:-105px;
+}
+.list-table .list-del {
+  background:#f16557;
+  right:-210px;
+}
+.list-null { padding-top:89px; }
+.list-null .img {
+  margin: 0 auto;
+  width:198px;
+  height:283px; 
+  background:url(/assets/img/dashboard/list_null.png) no-repeat center center;
+  margin-bottom:30px;
+}
+.list-null .txt {
+  text-align:center;
+  font-size:22px;
+  color:#777;
+}
