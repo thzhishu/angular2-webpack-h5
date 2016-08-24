@@ -1,7 +1,8 @@
 <div class="time-block">
-    <a class="fl">&lt;</a>
-    <div class="">
-        <input type="date" name="name" value="">
-    </div>
-    <a class="fr">&gt;</a>
+    <a class="fl arrow" (click)="onLastDate()">&lt;</a>
+    <input type="date" name="name" class="time-btn" [max]="today" [(ngModel)]="date">
+    <a class="fr arrow" *ngIf="!isToday()" (click)="onNextDate()">&gt;</a>
+</div>
+<div class="title-total">
+    合计 <span class="text-warning">3</span> 笔服务 平均 <span class="text-warning">8.3</span> 分
 </div>

@@ -122,10 +122,42 @@ input{
     background: #d7d7d7;
     color:#343434;
     padding: 10px;
+    text-align: center;
     .fl{
         float: left;
     }
     .fr{
         float: right;
     }
+    .time-btn{
+        display: inline-block;
+        text-align: center;
+        width: 178px;
+        margin-left: 50px;
+    }
+    .arrow{
+        font-size: 40px;
+        line-height: 30px;
+    }
+}
+// input[type=date]::-webkit-clear-button,
+// input[type=date]::-webkit-inner-spin-button,
+// input[type=date]::-webkit-calendar-picker-indicator {
+//     display:none;
+// }
+.title-total{
+    text-align: center;
+    color: #777;
+    font-size: 22px;
+    padding: 20px 0;
+    background: #fff;
+}
+.text-warning{
+    color: #f16557;
+}
+input[type=date]{
+    background: #d7d7d7;
+    border: 0;
+    font-size: 22px;
+    line-height: 20px;
 }

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { Home } from './home';
 import { NoContent } from './no-content';
 
-import { Dashboard, CustomerList,BusinessList } from './+dashboard';
+import { Dashboard, CustomerList,BusinessListComponent } from './+dashboard';
 
 import { Login, Index } from './+login';
 import { Register } from './+register';
@@ -42,7 +42,7 @@ export const ROUTES: Routes = [
           path: 'business',
           children: [
               { path: '', redirectTo: 'list', pathMatch: 'full'},
-              { path: 'list', component: BusinessList }
+              { path: 'list', component: BusinessListComponent }
           ]
       }
     ]

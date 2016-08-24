@@ -1,13 +1,14 @@
-import { Component, Input, Output, NgZone } from '@angular/core';
+import { Component, Input, Output, NgZone, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
 import { Http, Response, HTTP_PROVIDERS } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
-import {  ControlGroup, FormBuilder, Control } from '@angular/common';
+import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { Md5 } from 'ts-md5/dist/md5';
-import { UserApi, CommonApi, ShopApi, UserResponse, LoginReq } from 'client';
+
+import { BusinessApi, BusinessList, BusinessListResponse } from 'client';
 import { Cookie } from 'services';
 
 @Component({
@@ -17,110 +18,106 @@ import { Cookie } from 'services';
   ],
   template: require('./list.html'),
   styles: [require('./list.scss')],
-  providers: [HTTP_PROVIDERS, UserApi, CommonApi, ShopApi, Md5, Cookie]
+  providers: [HTTP_PROVIDERS, BusinessApi]
 })
-export class BusinessList {
-  loginForm: ControlGroup;
-  zone: any;
-  user: LoginReq = { phone: '', rnd: '', pwd: '' };
-  seekDisabeld: number = 0;
-  seekBtnTitle: number = 0;
-  img: any;
-  errorMsg: any;
-  loading: number = 0;
-  openProtocol: number = 0;
-  openErrorProtocol: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private uApi: UserApi, private cApi: CommonApi, private sApi: ShopApi) {
-    this.zone = new NgZone({ enableLongStackTrace: false }); // 事务控制器
-  }
 
-  blur(data, e) {
-    data.blur = e.type == 'blur';
-  }
+export class BusinessListComponent {
+  list: BusinessList;
+  today: string = moment().format('YYYY-MM-DD');
+  date: string = moment().format('YYYY-MM-DD');
+  page: any = {};
+  dateShow: boolean = false;
+  timeout: any;
+  shopChangeSub: Subscription;
 
-  errorWin(message) {
-    if (message === '短信验证码超时，导致userId不存在' || message === '您今天的短信发送已达到3次上限') {
-      this.openErrorProtocol = true;
-    } else {
-      this.errorMsg = message;
-    }
-    this.getCodeImg();
+  constructor(private router: Router, private route: ActivatedRoute, private bApi: BusinessApi) {
+    //   missionService.businessAddAnnounced$.subscribe(
+    //   astronaut => {
+    //     if (astronaut == 'business-list') {
+    //       this.getList();
+    //     }
+    //   });
+
+    //   this.shopChangeSub = this.thzsUtil.shopChanged$.subscribe( item => {
+    //       console.log('business list: ', item);
+    //       this.getList();
+    //   } );
+
+
   }
 
   // 初始化
   ngOnInit() {
-    this.getCodeImg();
+    this.getList();
+  }
+  ngOnDestroy() {
+    this.shopChangeSub.unsubscribe();
   }
 
-  onInitError(){
-    this.errorMsg = null;
+  onToggleDate(event) {
+    event.stopPropagation();
+    this.dateShow = !this.dateShow;
   }
 
-  /**
-   * 获取图片验证码
-   * @return {[type]} [description]
-   */
-  getCodeImg() {
-    this.cApi.commonCaptchaBase64Post().subscribe((data: Response) => {
-      this.img = 'data:image/jpeg;base64,' + (data.text() || '');
-      this.uApi.defaultHeaders.set('uuid', data.headers.get('uuid'));
-    });
+  public closeDatePicker(event) {
+    event.stopPropagation();
+    this.dateShow = false;
   }
-  onChangeCodeImg() {
-    this.getCodeImg();
+
+  moment(date,format='') {
+    return moment(date).format(format||'YYYY-MM-DD');
   }
-  errorTip(f){
-    if(f.controls.phone.errors&&f.controls.phone.errors.required){
-        this.errorMsg = '手机号码不能为空';
-        return true;
-    }
-    if(f.controls.phone.errors&&f.controls.phone.errors.pattern){
-        this.errorMsg = '请输入正确的手机号码';
-        return true;
-    }
-    if(f.controls.pwd.errors&&f.controls.pwd.errors.required){
-        this.errorMsg = '账户密码不能为空';
-        return true;
-    }
-    if(f.controls.rnd.errors&&f.controls.rnd.errors.required){
-        this.errorMsg = '验证码不能为空';
-        return true;
-    }
-    this.errorMsg = null;
-    return false;
+
+
+  onPickerChange(event) {
+    this.date = event;
+    this.getList();
   }
-  // 登录
-  onLogin(f) {
-    if(this.errorTip(f)){
-        return false;
-    }
-    this.loading = 1;
-    let params = this.user;
-    // mobile: string, password: string, code: string,
-    this.uApi.userLoginPost(params.phone, Md5.hashStr(params.pwd, false).toString(), params.rnd)
-      .subscribe((data) => {
-        this.loading = 0;
+
+  onLastDate() {
+    this.date = moment(this.date).subtract(1, 'days').format('YYYY-MM-DD');
+    this.getList();
+  }
+
+  onNextDate() {
+    this.date = moment(this.date).add(1, 'days').format('YYYY-MM-DD');
+    this.getList();
+  }
+
+  isToday(){
+    return moment(this.date).format('YYYY-MM-DD') < moment().format('YYYY-MM-DD');
+  }
+
+  onOpen() {
+    console.log('onOpen');
+  }
+
+  onClose() {
+    this.getList();
+  }
+
+  changePage(event) {
+    this.page.current = event.page;
+    this.getList();
+  }
+
+  getList() {
+    window.clearTimeout(this.timeout);
+    this.timeout = window.setTimeout(() => {
+      this.bApi.businessListGet(this.moment(this.date), this.page.current).subscribe(data => {
         if (data.meta.code === 200) {
-          Cookie.save('token', data.data.User.token, 7);
-          Cookie.save('shopId', data.data.User.lastShopId);
-          this.sApi.defaultHeaders.set('token', data.data.User.token);
-          if (data.data.User.lastShopId === null) {
-            this.router.navigate(['/init-store']);
-          } else {
-            this.sApi.defaultHeaders.set('shopId', data.data.User.lastShopId);
-            this.router.navigate(['/dashbroad/business-list']);
-          }
-        } else {
-          this.errorMsg = data.error.message;
+          this.list = data.data;
+          this.page.current = data.meta.current || 1;
+          this.page.limit = data.meta.limit || 20;
+          this.page.total = data.meta.total || 0;
+          this.page.pageTotal = Math.ceil(this.page.total / this.page.limit);
         }
-      });
+      })
+    }, 500)
   }
 
-  toHome() {
-    this.router.navigate(['']);
-  }
-  goBack() {
-    window.history.back();
+  onOpenBusinessAdd() {
+    // this.missionService.confirmBusinessAdd({ selector: 'business-list' });
   }
 }

@@ -175,7 +175,7 @@ export class Register {
           this.sApi.shopMyshopGet(data.data.token).subscribe(data => {
             if (data.meta.code === 200) {
               if (data.data.length > 0) {
-                this.router.navigate(['/dashbroad/business-list']);
+                this.router.navigate(['/dashboard/business-list']);
               } else {
                 this.router.navigate(['/init-store']);
               }

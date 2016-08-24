@@ -181,7 +181,7 @@ export class ForgetPwd {
     if (key === 'okey') {
 
       if (this.errorMsg === '短信验证码超时，导致userId不存在') {
-        // this.router.navigate(['/login-min']);
+        // this.router.navigate(['/login']);
         this.next = 1;
         this.getCodeImg();
       }
