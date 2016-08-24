@@ -7,5 +7,12 @@ import { Component } from '@angular/core';
     styles: [require('./dashboard.style.scss')]
 })
 export class Dashboard {
+    showMenu: boolean = false;
+
+    constructor() {}
+
+    onToggleMenu() {
+        this.showMenu = !this.showMenu;
+    }
 
 }
