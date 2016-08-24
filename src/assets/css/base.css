@@ -386,7 +386,9 @@ th {
   background:#f16557;
   right:-210px;
 }
-.list-null { padding-top:89px; }
+.list-empty {
+  height:100%;
+}
 .list-null .img {
   margin: 0 auto;
   width:198px;
@@ -398,4 +400,31 @@ th {
   text-align:center;
   font-size:22px;
   color:#777;
+}
+
+/** common **/
+.db-title {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    font-size:28px;
+    color:#fff;
+    padding:32px 34px 0;
+
+        
+}
+
+.db-title .bw {
+  width:35px;
+  height:35px;
+}
+.db-title .flex-1 {
+  margin:0 8px;
+}
+.db-c-wrap {
+  position:relative;
+  height:100%;
+  padding-top:93px;
+  overflow:hidden;
 }

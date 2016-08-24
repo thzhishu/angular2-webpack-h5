@@ -22,12 +22,12 @@ export class Home {
 				this.current = this.current ? false : true;
 			});
 		}, 5e3);
-		this.body = document.getElementsByTagName('body')[0];
+		//this.body = document.getElementsByTagName('body')[0];
 	}
 
 	onToggleMenu() {
 		this.showMenu = !this.showMenu;
-		this.showMenu ? this.body.addEventListener('touchmove', this.preventScroll) : this.body.removeEventListener('touchmove', this.preventScroll);
+		//this.showMenu ? this.body.addEventListener('touchmove', this.preventScroll) : this.body.removeEventListener('touchmove', this.preventScroll);
 	}
 
 	onToggleAboutUs() {
