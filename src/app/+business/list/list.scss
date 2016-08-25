@@ -182,9 +182,17 @@ input[type=date]{
         }
         .list-tbody {
             height:100%;
+            min-height: 400px;
             overflow-y:auto;
             overflow-x:hidden;
-            -webkit-overflow-scrolling:touch;
+            // -webkit-overflow-scrolling:touch;
+            .list-tds{
+                transition: all .1s linear;
+            }
+            .swipeleft{
+                margin-left: -210px;
+                transition: all .3s linear;
+            }
         }
 
         .list-tr {
@@ -195,13 +203,15 @@ input[type=date]{
             > div {
                 height:78px;
                 line-height: 78px;
-                overflow:hidden; white-space:nowrap; text-overflow:ellipsis;
+                overflow:hidden;
+                white-space:nowrap;
+                text-overflow:ellipsis;
                 &:nth-child(1) { width: 57px; }
                 &:nth-child(2) { width: 102px; }
                 &:nth-child(3) { width: 112px; }
-                &:nth-child(4) { width: 140px; }
+                &:nth-child(4) { width: 110px; }
                 &:nth-child(5) { width: 93px; }
-                &:nth-child(6) { width: 88px; }
+                &:nth-child(6) { width: 118px; }
             }
         }
     }
