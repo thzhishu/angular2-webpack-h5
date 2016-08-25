@@ -111,11 +111,19 @@ export class CustomerForm implements OnInit {
 					data.data.vehicleYear = '2005年及以前';
 				}
                 this.customer = Object.assign(this.customer, data.data);
+                this.formatCustomer();
                 this.customerOldPlate = this.tempPlate = this.customer.vehicleLicence;
                 this.customer.valid.plateNull = true;
             }
 		}, err => console.error(err));
 	}
+
+    formatCustomer() {
+        this.customer.birthYear = this.customer.birthYear === null ? '' : this.customer.birthYear;
+        this.customer.gender = this.customer.gender === null ? '' : this.customer.gender;
+        this.customer.vehicleYear = this.customer.vehicleYear === null ? '' : this.customer.vehicleYear;
+        this.customer.vehicleMiles = this.customer.vehicleMiles === null ? '' : this.customer.vehicleMiles;
+    }
 
     onPlateFocus() {
         this.customer.validShowTip.plate = false;
@@ -171,15 +179,15 @@ export class CustomerForm implements OnInit {
             const vals = this.customer;
             this.submiting = true;
             this.capi.customerSaveOrUpdatePost(
-                vals.vehicleLicence.trim(),
+                vals.vehicleLicence,
                 vals.id,
-                vals.mobile.trim(),
-                vals.vehicleFrame.trim(),
-                vals.name.trim(),
+                vals.mobile,
+                vals.vehicleFrame,
+                vals.name,
                 vals.birthYear,
                 vals.gender,
-                vals.vehicleBrand.trim(),
-                vals.vehicleModel.trim(),
+                vals.vehicleBrand,
+                vals.vehicleModel,
                 vals.vehicleYear,
                 vals.vehicleMiles
             ).subscribe( data => {

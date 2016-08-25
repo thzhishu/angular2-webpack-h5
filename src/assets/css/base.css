@@ -469,7 +469,7 @@ th {
 
 .cr-form { color:#343434; font-size:22px; }
 .cr-form .fm-field { border-bottom:1px solid #e5e5e9; }
-.cr-form .fm-label { display:block; width:175px; text-indent:42px; }
+.cr-form .fm-label { display:block; width:175px; text-indent:24px; }
 .cr-form .fm-ipt { display:block; border:none;  height:78px; font-size:22px; color:#343434; -webkit-appearance: none; appearance:none; outline:none; }
 .cr-form .warning { color:#f16557; }
 .cr-form .fm-extra { line-height: 40px; padding: 10px 24px; background:#e5e5e5; }

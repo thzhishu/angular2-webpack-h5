@@ -38,7 +38,8 @@ export class CustomerList implements OnInit {
             this.customers = [];
         } );
     }
-    onEditCustomer(customer) {
+    onEditCustomer(customer, e) {
+        e.stopPropagation();
         this.router.navigate(['/dashboard/customer/edit', customer.id]);
     }
     onAddNewCustomer() {
@@ -62,8 +63,13 @@ export class CustomerList implements OnInit {
         this.showDelWin = false;
         this.delCustomer = undefined;
     }
-    onShowDelWin(customer) {
+    onShowDelWin(customer, e) {
+        e.stopPropagation();
         this.showDelWin = true;
         this.delCustomer = customer;
+    }
+    onViewCustomerDetail(customer, e) {
+        e.stopPropagation();
+        this.router.navigate(['/dashboard/customer/detail', customer.id]);
     }
 }
