@@ -399,13 +399,16 @@ th {
   overflow:hidden;
   text-align: center;
 }
+.list-table .list-thead {
+  background:#fff;
+}
 .list-ths {
   font-size:22px;
 }
 .list-tds {
   font-size: 18px;
 }
-.list-tr { position: relative;}
+.list-tr { position: relative; background:#fff;}
 .list-table .list-edit, .list-table .list-del { 
   position:absolute; 
   width:105px;
@@ -464,7 +467,7 @@ th {
   overflow:hidden;
 }
 
-.cr-form { color:#343434; font-size:22px; background:#fff;}
+.cr-form { color:#343434; font-size:22px; }
 .cr-form .fm-field { border-bottom:1px solid #e5e5e9; }
 .cr-form .fm-label { display:block; width:175px; text-indent:42px; }
 .cr-form .fm-ipt { display:block; border:none;  height:78px; font-size:22px; color:#343434; -webkit-appearance: none; appearance:none; outline:none; }
@@ -493,3 +496,10 @@ th {
 }
 .cr-form .fm-tip { height:0; overflow:hidden; transition:all .3s linear; }
 .cr-form .fm-tip.warning { height:40px; }
+
+.confirm { position:fixed; top:0; right:0; bottom:0; left:0; background:rgba(0, 0, 0, .5); font-size:28px; color:#000; z-index:200; }
+.confirm .confirm-c { position:relative; width:483px; min-height:220px; height:auto; background:#fff; border-radius:20px; }
+.confirm .confirm-c:before {position: absolute; display: block; content: ''; width:224px; height: 163px; top: -149px; left: 50%; margin-left: -112px; background:url(/assets/img/dashboard/alert_head.png) no-repeat bottom center;}
+.confirm .confirm-op { border-top:1px solid #b5b5b5; height:68px; line-height: 67px; color:#38b549}
+.confirm .confirm-ok { border-right: 1px solid #b5b5b5; }
+.confirm .confirm-msg { line-height: 34px; padding: 46px 60px 39px; }
