@@ -45,6 +45,40 @@ export class CustomerApi {
         }
     }
 
+
+    /**
+     * 删除顾客信息
+     * 根据顾客id删除顾客
+     * @param customerId 顾客id
+     */
+    public customerCustomerIdDeleteDelete (customerId: string, extraHttpRequestParams?: any ) : Observable<models.CommonResponse> {
+        const path = this.basePath + '/customer/{customerId}/delete'
+            .replace('{' + 'customerId' + '}', String(customerId));
+
+        let queryParameters = new URLSearchParams();
+        let headerParams = this.defaultHeaders;
+        headerParams.set('token', Cookie.load('token')); //tobeplus 缓存注入 header
+        headerParams.set('shopId', Cookie.load('shopId')); //tobeplus 缓存注入 header
+        // verify required parameter 'customerId' is not null or undefined
+        if (customerId === null || customerId === undefined) {
+            throw new Error('Required parameter customerId was null or undefined when calling customerCustomerIdDeleteDelete.');
+        }
+        let requestOptions: RequestOptionsArgs = {
+            method: 'DELETE',
+            headers: headerParams,
+            search: queryParameters
+        };
+
+        return this.http.request(path, requestOptions)
+            .map((response: Response) => {
+                if (response.status === 204) {
+                    return undefined;
+                } else {
+                    return response.json();
+                }
+            });
+    }
+
     /**
      * 根据用户id返回顾客信息
      * 根据用户id返回顾客信息
