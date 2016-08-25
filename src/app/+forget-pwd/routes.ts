@@ -1,4 +1,4 @@
-import { ForgetPwd } from './forgetPwd.component';
+import { ForgetPwd } from './forget-pwd.component';
 import { Index } from './index.component';
 
 // async components must be named routes for WebpackAsyncRoute

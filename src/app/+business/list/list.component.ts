@@ -10,11 +10,14 @@ import { Md5 } from 'ts-md5/dist/md5';
 
 import { BusinessApi, BusinessList, BusinessListResponse } from 'client';
 import { Cookie } from 'services';
+import { BusinessTab } from '../../business-tab';
+
+
 
 @Component({
   selector: 'business-list',
   directives: [
-    ...ROUTER_DIRECTIVES
+    ...ROUTER_DIRECTIVES,BusinessTab
   ],
   template: require('./list.html'),
   styles: [require('./list.scss')],
@@ -52,7 +55,11 @@ export class BusinessListComponent {
     this.getList();
   }
   ngOnDestroy() {
-    this.shopChangeSub.unsubscribe();
+    // this.shopChangeSub.unsubscribe();
+  }
+
+  onChange(e){
+      console.log(e);
   }
 
   onToggleDate(event) {

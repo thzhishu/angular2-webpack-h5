@@ -10,8 +10,8 @@ import { UserApi, CommonApi } from 'client';
 
 @Component({
   selector: 'forget-pwd',
-  template: require('./forgetPwd.html'),
-  styles: [require('./forgetPwd.scss')],
+  template: require('./forget-pwd.html'),
+  styles: [require('./forget-pwd.scss')],
   directives: [...ROUTER_DIRECTIVES],
   providers: [HTTP_PROVIDERS, UserApi, CommonApi, Md5],
 })
