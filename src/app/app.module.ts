@@ -40,8 +40,8 @@ const APP_PROVIDERS = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    MdButtonModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
-    MdButtonModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     PLATFORM_PROVIDERS,

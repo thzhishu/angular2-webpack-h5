@@ -8,7 +8,7 @@ import { Dashboard, CustomerList, BusinessListComponent, CustomerAdd, CustomerEd
 
 import { Login, Index } from './+login';
 import { Register } from './+register';
-import { ForgetPwd } from './+forgetPwd';
+import { ForgetPwd } from './+forget-pwd';
 
 
 import { DataResolver } from './app.resolver';

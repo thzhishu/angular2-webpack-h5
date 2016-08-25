@@ -1,4 +1,4 @@
-export { ForgetPwd } from './forgetPwd.component';
+export { ForgetPwd } from './forget-pwd.component';
 export { Index } from './index.component';
 
 // Must be exported for WebpackAsyncRoute
