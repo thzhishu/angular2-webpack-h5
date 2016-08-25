@@ -1,17 +1,35 @@
 import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
+import { Http, Response, HTTP_PROVIDERS } from '@angular/http';
+import { UserApi, ShopApi, Shop, MyAcountResponse } from 'client';
+import { Cookie} from 'services';
 
+import * as moment from 'moment';
+import * as _ from 'lodash';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
     selector: 'dashboard',
     template: require('./dashboard.template.html'),
-    styles: [require('./dashboard.style.scss')]
+    styles: [require('./dashboard.style.scss')],
+    directives: [ROUTER_DIRECTIVES],
+    providers: [HTTP_PROVIDERS, UserApi, ShopApi, Cookie]
 })
 export class Dashboard {
     showMenu: boolean = false;
     showStoreLayer: boolean = false;
+    title: string;
+    storeName: string;
+    shopId: number;
+    list: Array<Shop>;
 
+    constructor(private router: Router, private uApi: UserApi, private sApi: ShopApi) {
 
-    constructor() {}
+    }
+
+    ngOnInit() {
+      this.getMe();
+    }
 
     onToggleMenu() {
         this.showMenu = !this.showMenu;
@@ -27,10 +45,36 @@ export class Dashboard {
         e.stopPropagation();
         this.showStoreLayer = !this.showStoreLayer;
     }
-    changeCurrentStore(e) {
-        e.stopPropagation();
-        console.log('change store e', e);
+
+    getMe() {
+      this.uApi.userMeGet().subscribe((data: MyAcountResponse) => {
+        this.shopId = data.data.user.lastShopId;
+        this.getList();
+      })
     }
-    
+
+    getList() {
+      this.sApi.shopMyshopGet().subscribe((data) => {
+        this.list = data.data;
+        _.forEach(this.list, (val, i) => {
+          if (this.shopId === val.id) {
+            this.storeName = val.name;
+          }
+        })
+      })
+    }
+
+    changeCurrentStore(item) {
+      this.uApi.userShopCurrentPost(item.id).subscribe((data) => {
+        this.storeName = item.name;
+        Cookie.save('shopId', item.id);
+        if (this.router.url === '/dashboard/business/list') {
+
+        } else {
+          this.router.navigate(['/dashboard/business/list']);
+        }
+
+      });
+    }
 
 }

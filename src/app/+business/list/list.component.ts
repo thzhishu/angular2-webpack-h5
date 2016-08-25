@@ -57,9 +57,11 @@ export class BusinessListComponent {
   ngOnDestroy() {
     // this.shopChangeSub.unsubscribe();
   }
-
-  onChange(e){
-      console.log(e);
+  onSwipeLeft(data){
+    data.swipeleft = 1;
+  }
+  onSwipeRight(data){
+     data.swipeleft = 0;
   }
 
   onToggleDate(event) {
