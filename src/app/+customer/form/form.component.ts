@@ -160,6 +160,10 @@ export class CustomerForm implements OnInit {
         }
     }
 
+    goToListPage() {
+        this.router.navigate(['/dashboard/customer/list']);
+    }
+
     onSave() {
         if (this.submiting) return;
         const valid = this.customer.valid;
@@ -180,7 +184,7 @@ export class CustomerForm implements OnInit {
                 vals.vehicleMiles
             ).subscribe( data => {
                 if (data.meta.code === 200) {
-                    this.router.navigate(['/dashboard/customer/list']);
+                    this.goToListPage();
                 }
                 this.submiting = false;
             }, err => {
