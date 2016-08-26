@@ -144,9 +144,8 @@ export class BusinessApi {
      * @param businessId 服务id
      */
     public businessBusinessIdUrlGet (businessId: string, extraHttpRequestParams?: any ) : Observable<models.BusinessCommentURLResponse> {
-        let path = this.basePath + '/business/{businessId}/url'
+        const path = this.basePath + '/business/{businessId}/url'
             .replace('{' + 'businessId' + '}', String(businessId));
-            path = path + '?t=' + (new Date()).getTime();
 
         let queryParameters = new URLSearchParams();
         let headerParams = this.defaultHeaders;
@@ -166,6 +165,7 @@ export class BusinessApi {
 
         return this.http.request(path, requestOptions)
             .map((response: Response) => {
+                console.log('response', response);
                 if (response.status === 401||response.status === 403) {                     window.location.href = '/#/login';                     return undefined;                 } else if (response.status === 204) {
                     return undefined;
                 } else {

@@ -90,7 +90,6 @@ export class CustomerDetail implements OnInit {
 
     // 显示评价弹出层
     onShowCommentWin(record) {
-        console.log('record: ', record)
         this.showCommentWin = true;
         this.historyRecord = record;
         this.historyRecord.hasSend = record.hasSend ? record.hasSend : false;
@@ -100,15 +99,12 @@ export class CustomerDetail implements OnInit {
         if (this.hasSend) {
             this.sendBtnTxt = '重新发送';
         }
-        console.log(this.historyRecord);
-        console.log('url: ', this.historyRecord.url);
+        
         if (this.historyRecord.url) {
             this.commentUrl.qrCode = this.historyRecord.qrCode;
             this.commentUrl.url = this.historyRecord.url;
         } else {
-            console.log('888888888888');
             this.bApi.businessBusinessIdUrlGet(record.id).subscribe(data => {
-                console.log('bapi', data);
                 if (data.meta.code === 200) {
                     this.commentUrl.qrCode = this.historyRecord.qrCode = data.data.qrCode;
                     this.commentUrl.url = this.historyRecord.url = data.data.url;
@@ -147,6 +143,7 @@ export class CustomerDetail implements OnInit {
         // 成功
         const rnd = Math.floor(Math.random() * 9000 + 1000);
         const salt = 'thzs0708';
+        console.log(mobile + rnd + salt);
         let sign = Md5.hashStr(mobile + rnd + salt).toString();
         this.bApi.businessBusinessIdCommentPost(this.historyRecord.id, mobile, rnd + '', sign).subscribe(data => {
             console.log(data);
