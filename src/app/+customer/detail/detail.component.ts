@@ -32,6 +32,7 @@ export class CustomerDetail implements OnInit {
     };
         delRecord:any;
     next:number;
+    isUnfold: boolean = false;
     constructor(private cApi: CustomerApi, private router: Router, private route: ActivatedRoute) {
 
 	}
@@ -74,6 +75,10 @@ export class CustomerDetail implements OnInit {
 		customer.sex = customer.gender === 0 ? '女' : customer.gender === 1 ? '男' : '';
 		return customer;
 	}
+
+    onToggleUnfold() {
+        this.isUnfold = !this.isUnfold;
+    }
 
 
 }
