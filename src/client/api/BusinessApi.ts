@@ -144,8 +144,9 @@ export class BusinessApi {
      * @param businessId 服务id
      */
     public businessBusinessIdUrlGet (businessId: string, extraHttpRequestParams?: any ) : Observable<models.BusinessCommentURLResponse> {
-        const path = this.basePath + '/business/{businessId}/url'
+        let path = this.basePath + '/business/{businessId}/url'
             .replace('{' + 'businessId' + '}', String(businessId));
+            path = path + '?t=' + (new Date()).getTime();
 
         let queryParameters = new URLSearchParams();
         let headerParams = this.defaultHeaders;

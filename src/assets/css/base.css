@@ -463,7 +463,7 @@ th {
 .db-c-wrap {
   position:relative;
   height:100%;
-  padding-top:93px;
+  padding-top:98px;
   overflow:hidden;
 }
 
@@ -503,3 +503,11 @@ th {
 .confirm .confirm-op { border-top:1px solid #b5b5b5; height:68px; line-height: 67px; color:#38b549}
 .confirm .confirm-ok { border-right: 1px solid #b5b5b5; }
 .confirm .confirm-msg { line-height: 34px; padding: 46px 60px 39px; }
+
+.mask { position:fixed; top:0; right:0; bottom:0; left:0; background:rgba(0, 0, 0, .4); z-index:200;}
+.mask .mask-win { border-radius: 10px; background:#fff; position:relative; }
+.mask .mask-win .mask-close { position:absolute; width:24px; height:24px; top:16px; right:16px; -webkit-transform: rotate(45deg); transform: rotate(45deg); }
+.mask .mask-win .mask-close:before, 
+.mask .mask-win .mask-close:after { background:#343434; }
+.mask .mask-win .mask-close:before { width:24px; height:4px; top:10px; }
+.mask .mask-win .mask-close:after { width:4px; left:10px; }

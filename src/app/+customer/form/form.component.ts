@@ -180,16 +180,16 @@ export class CustomerForm implements OnInit {
             this.submiting = true;
             this.capi.customerSaveOrUpdatePost(
                 vals.vehicleLicence,
-                vals.id,
-                vals.mobile,
-                vals.vehicleFrame,
-                vals.name,
-                vals.birthYear,
-                vals.gender,
-                vals.vehicleBrand,
-                vals.vehicleModel,
-                vals.vehicleYear,
-                vals.vehicleMiles
+                vals.id || '',
+                vals.mobile || '',
+                vals.vehicleFrame || '',
+                vals.name || '',
+                vals.birthYear || '',
+                vals.gender || '',
+                vals.vehicleBrand || '',
+                vals.vehicleModel || '',
+                vals.vehicleYear || '',
+                vals.vehicleMiles || ''
             ).subscribe( data => {
                 if (data.meta.code === 200) {
                     this.goToListPage();
