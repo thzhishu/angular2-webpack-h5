@@ -11,13 +11,14 @@ import { Md5 } from 'ts-md5/dist/md5';
 import { BusinessApi, BusinessList, BusinessListResponse } from 'client';
 import { Cookie } from 'services';
 import { BusinessTab } from '../../business-tab';
+import { ScrollableDirective } from '../../directives/scrollable';
 
 
 
 @Component({
   selector: 'business-list',
   directives: [
-    ...ROUTER_DIRECTIVES,BusinessTab
+    ...ROUTER_DIRECTIVES, BusinessTab, ScrollableDirective
   ],
   template: require('./list.html'),
   styles: [require('./list.scss')],
@@ -28,11 +29,14 @@ import { BusinessTab } from '../../business-tab';
 export class BusinessListComponent {
   list: BusinessList;
   today: string = moment().format('YYYY-MM-DD');
-  date: string = moment().format('YYYY-MM-DD');
-  page: any = {};
+  date: string = '2016-07-27' || moment().format('YYYY-MM-DD');
+  page: any = { current: 1 };
   dateShow: boolean = false;
   timeout: any;
   shopChangeSub: Subscription;
+  next: boolean = false;
+  loading: boolean = false;
+  end: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private bApi: BusinessApi) {
     //   missionService.businessAddAnnounced$.subscribe(
@@ -57,11 +61,31 @@ export class BusinessListComponent {
   ngOnDestroy() {
     // this.shopChangeSub.unsubscribe();
   }
-  onSwipeLeft(data){
-    data.swipeleft = 1;
+  onSwipeLeft(event) {
+    event.preventDefault();
+    event.target.parentNode.classList.add('swipeleft');
   }
-  onSwipeRight(data){
-     data.swipeleft = 0;
+  onSwipeRight(event) {
+    event.preventDefault();
+    event.target.parentNode.classList.remove('swipeleft');
+  }
+  // onPanUp(event, listTbody) {
+  //   event.preventDefault();
+  //   if (listTbody.scrollHeight == listTbody.scrollTop + listTbody.clientHeight) {
+  //
+  //     event.target.parentNode.parentNode.classList.add('panup');
+  //     window.setTimeout(() => {
+  //       event.target.parentNode.parentNode.classList.remove('panup');
+  //     }, 1800);
+  //   } else {
+  //     event.target.parentNode.parentNode.classList.remove('panup');
+  //   }
+  // }
+  onScrollEnd(next) {
+    this.next = next;
+    if (next&&!this.loading) {
+      this.getList(true);
+    }
   }
 
   onToggleDate(event) {
@@ -74,8 +98,8 @@ export class BusinessListComponent {
     this.dateShow = false;
   }
 
-  moment(date,format='') {
-    return moment(date).format(format||'YYYY-MM-DD');
+  moment(date, format = '') {
+    return moment(date).format(format || 'YYYY-MM-DD');
   }
 
 
@@ -94,7 +118,7 @@ export class BusinessListComponent {
     this.getList();
   }
 
-  isToday(){
+  isToday() {
     return moment(this.date).format('YYYY-MM-DD') < moment().format('YYYY-MM-DD');
   }
 
@@ -111,17 +135,30 @@ export class BusinessListComponent {
     this.getList();
   }
 
-  getList() {
+  getList(scroll = false) {
+      this.loading = true;
+    if (scroll) {
+      this.page.current += 1;
+    }
     window.clearTimeout(this.timeout);
     this.timeout = window.setTimeout(() => {
       this.bApi.businessListGet(this.moment(this.date), this.page.current).subscribe(data => {
-        if (data.meta.code === 200) {
-          this.list = data.data;
+        if (data.meta.code === 200 && data.data) {
+          if (scroll) {
+            this.list.content = this.list.content.concat(data.data.content);
+          } else {
+            this.list = data.data;
+          }
+          //   this.page.current = data.meta.current || 1;
+          //   this.page.limit = data.meta.limit || 20;
+          //   this.page.total = data.meta.total || 0;
+          //   this.page.pageTotal = Math.ceil(this.page.total / this.page.limit);
+        } else {
+        //   this.next = false;
           this.page.current = data.meta.current || 1;
-          this.page.limit = data.meta.limit || 20;
-          this.page.total = data.meta.total || 0;
-          this.page.pageTotal = Math.ceil(this.page.total / this.page.limit);
+          this.end = true;
         }
+        this.loading = false;
       })
     }, 500)
   }
