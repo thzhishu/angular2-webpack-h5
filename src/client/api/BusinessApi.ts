@@ -37,7 +37,7 @@ import { Cookie } from 'services';  //tobeplus 缓存注入 header
 @Injectable()
 export class BusinessApi {
     protected basePath = '/api/v1';
-    public defaultHeaders : Headers = new Headers();
+    public defaultHeaders: Headers = new Headers();
 
     constructor(protected http: Http, @Optional() basePath: string) {
         if (basePath) {
@@ -53,7 +53,7 @@ export class BusinessApi {
      * @param rnd 4位随机数， 客户端生成
      * @param sign 签名, md5(phone+rnd+salt)， 其中salt&#x3D;thzs0708, 不符合签名的请求一律返回错误
      */
-    public businessBusinessIdCommentPost (businessId: string, mobile: string, rnd: string, sign: string, extraHttpRequestParams?: any ) : Observable<models.CommonResponse> {
+    public businessBusinessIdCommentPost(businessId: string, mobile: string, rnd: string, sign: string, extraHttpRequestParams?: any): Observable<models.CommonResponse> {
         const path = this.basePath + '/business/{businessId}/comment'
             .replace('{' + 'businessId' + '}', String(businessId));
 
@@ -83,9 +83,9 @@ export class BusinessApi {
         }
         headerParams.set('Content-Type', 'application/x-www-form-urlencoded');
 
-        formParams.append('mobile',mobile);
-        formParams.append('rnd',rnd);
-        formParams.append('sign',sign);
+        formParams.append('mobile', mobile);
+        formParams.append('rnd', rnd);
+        formParams.append('sign', sign);
         let requestOptions: RequestOptionsArgs = {
             method: 'POST',
             headers: headerParams,
@@ -95,10 +95,10 @@ export class BusinessApi {
 
         return this.http.request(path, requestOptions)
             .map((response: Response) => {
-                if (response.status === 401||response.status === 403) {                     window.location.href = '/#/login';                     return undefined;                 } else if (response.status === 204) {
+                if (response.status === 401 || response.status === 403) { window.location.href = '/#/login'; return undefined; } else if (response.status === 204) {
                     return undefined;
                 } else {
-                    if (response.json().meta&&response.json().meta.code === 401) {   alert('您离开时间过长,需要重新登录');                         window.location.href = '/#/login';                     return undefined;}                     return response.json();
+                    if (response.json().meta && response.json().meta.code === 401) { alert('您离开时间过长,需要重新登录'); window.location.href = '/#/login'; return undefined; } return response.json();
                 }
             });
     }
@@ -108,7 +108,7 @@ export class BusinessApi {
      *
      * @param businessId
      */
-    public businessBusinessIdGet (businessId: string, extraHttpRequestParams?: any ) : Observable<models.BusinessDetailResponse> {
+    public businessBusinessIdGet(businessId: string, extraHttpRequestParams?: any): Observable<models.BusinessDetailResponse> {
         const path = this.basePath + '/business/{businessId}'
             .replace('{' + 'businessId' + '}', String(businessId));
 
@@ -130,10 +130,10 @@ export class BusinessApi {
 
         return this.http.request(path, requestOptions)
             .map((response: Response) => {
-                if (response.status === 401||response.status === 403) {                     window.location.href = '/#/login';                     return undefined;                 } else if (response.status === 204) {
+                if (response.status === 401 || response.status === 403) { window.location.href = '/#/login'; return undefined; } else if (response.status === 204) {
                     return undefined;
                 } else {
-                    if (response.json().meta&&response.json().meta.code === 401) {   alert('您离开时间过长,需要重新登录');                         window.location.href = '/#/login';                     return undefined;}                     return response.json();
+                    if (response.json().meta && response.json().meta.code === 401) { alert('您离开时间过长,需要重新登录'); window.location.href = '/#/login'; return undefined; } return response.json();
                 }
             });
     }
@@ -143,8 +143,8 @@ export class BusinessApi {
      *
      * @param businessId 服务id
      */
-    public businessBusinessIdUrlGet (businessId: string, extraHttpRequestParams?: any ) : Observable<models.BusinessCommentURLResponse> {
-        let path = this.basePath + '/business/{businessId}/url'
+    public businessBusinessIdUrlGet(businessId: string, extraHttpRequestParams?: any): Observable<models.BusinessCommentURLResponse> {
+        const path = this.basePath + '/business/{businessId}/url'
             .replace('{' + 'businessId' + '}', String(businessId));
 
         let queryParameters = new URLSearchParams();
@@ -165,21 +165,16 @@ export class BusinessApi {
 
         return this.http.request(path, requestOptions)
             .map((response: Response) => {
-                console.log(response);
-                if (response.status === 401||response.status === 403) {
-                    window.location.href = '/#/login';
-                    return undefined;
-                } else if (response.status === 204) {
+                if (response.status === 401 || response.status === 403) { window.location.href = '/#/login'; return undefined; } else if (response.status === 204) {
                     return undefined;
                 } else {
-                    if (response.json().meta&&response.json().meta.code === 401) {
+                    if (response.json().meta && response.json().meta.code === 401) {
                         alert('您离开时间过长,需要重新登录');
                         window.location.href = '/#/login';
                         return undefined;
                     }
                     return response.json();
                 }
-                return response.json();
             });
     }
 
@@ -188,7 +183,7 @@ export class BusinessApi {
      *
      * @param id 服务id
      */
-    public businessDeleteDelete (id: string, extraHttpRequestParams?: any ) : Observable<models.CommonResponse> {
+    public businessDeleteDelete(id: string, extraHttpRequestParams?: any): Observable<models.CommonResponse> {
         const path = this.basePath + '/business/delete/{id}'
             .replace('{' + 'id' + '}', String(id));
 
@@ -214,10 +209,10 @@ export class BusinessApi {
 
         return this.http.request(path, requestOptions)
             .map((response: Response) => {
-                if (response.status === 401||response.status === 403) {                     window.location.href = '/#/login';                     return undefined;                 } else if (response.status === 204) {
+                if (response.status === 401 || response.status === 403) { window.location.href = '/#/login'; return undefined; } else if (response.status === 204) {
                     return undefined;
                 } else {
-                    if (response.json().meta&&response.json().meta.code === 401) {   alert('您离开时间过长,需要重新登录');                         window.location.href = '/#/login';                     return undefined;}                     return response.json();
+                    if (response.json().meta && response.json().meta.code === 401) { alert('您离开时间过长,需要重新登录'); window.location.href = '/#/login'; return undefined; } return response.json();
                 }
             });
     }
@@ -229,7 +224,7 @@ export class BusinessApi {
      * @param pageNumber 当前页
      * @param pageSize 分页大小
      */
-    public businessListGet (date: string, pageNumber?: string, pageSize?: string, extraHttpRequestParams?: any ) : Observable<models.BusinessListResponse> {
+    public businessListGet(date: string, pageNumber?: string, pageSize?: string, extraHttpRequestParams?: any): Observable<models.BusinessListResponse> {
         const path = this.basePath + '/business/list';
 
         let queryParameters = new URLSearchParams();
@@ -262,10 +257,10 @@ export class BusinessApi {
 
         return this.http.request(path, requestOptions)
             .map((response: Response) => {
-                if (response.status === 401||response.status === 403) {                     window.location.href = '/#/login';                     return undefined;                 } else if (response.status === 204) {
+                if (response.status === 401 || response.status === 403) { window.location.href = '/#/login'; return undefined; } else if (response.status === 204) {
                     return undefined;
                 } else {
-                    if (response.json().meta&&response.json().meta.code === 401) {   alert('您离开时间过长,需要重新登录');                         window.location.href = '/#/login';                     return undefined;}                     return response.json();
+                    if (response.json().meta && response.json().meta.code === 401) { alert('您离开时间过长,需要重新登录'); window.location.href = '/#/login'; return undefined; } return response.json();
                 }
             });
     }
@@ -275,7 +270,7 @@ export class BusinessApi {
      *
      * @param payload 服务项目(服务或者交易)
      */
-    public businessSaveOrUpdatePost (payload: models.BusinessDetail, extraHttpRequestParams?: any ) : Observable<models.BusinessDetailResponse> {
+    public businessSaveOrUpdatePost(payload: models.BusinessDetail, extraHttpRequestParams?: any): Observable<models.BusinessDetailResponse> {
         const path = this.basePath + '/business/saveOrUpdate';
 
         let queryParameters = new URLSearchParams();
@@ -298,10 +293,10 @@ export class BusinessApi {
 
         return this.http.request(path, requestOptions)
             .map((response: Response) => {
-                if (response.status === 401||response.status === 403) {                     window.location.href = '/#/login';                     return undefined;                 } else if (response.status === 204) {
+                if (response.status === 401 || response.status === 403) { window.location.href = '/#/login'; return undefined; } else if (response.status === 204) {
                     return undefined;
                 } else {
-                    if (response.json().meta&&response.json().meta.code === 401) {   alert('您离开时间过长,需要重新登录');                         window.location.href = '/#/login';                     return undefined;}                     return response.json();
+                    if (response.json().meta && response.json().meta.code === 401) { alert('您离开时间过长,需要重新登录'); window.location.href = '/#/login'; return undefined; } return response.json();
                 }
             });
     }
