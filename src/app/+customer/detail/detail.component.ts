@@ -65,12 +65,10 @@ export class CustomerDetail implements OnInit {
             this.page.limit = data.meta.limit;
             this.page.total = data.meta.total;
             this.page.pageTotal = Math.ceil(this.page.total / this.page.limit);
-            console.log('page: ', this.page);
         } else {
             //啥都没有
             this.customerDetail = {};
         }
-        console.log('customer: ', this.customer);
         }, err => console.error(err));
     }
     formatCustomer(customer) {
@@ -139,14 +137,11 @@ export class CustomerDetail implements OnInit {
             this.sendErr.mobile = true;
             return;
         }
-        console.log(mobile);
         // 成功
         const rnd = Math.floor(Math.random() * 9000 + 1000);
         const salt = 'thzs0708';
-        console.log(mobile + rnd + salt);
         let sign = Md5.hashStr(mobile + rnd + salt).toString();
         this.bApi.businessBusinessIdCommentPost(this.historyRecord.id, mobile, rnd + '', sign).subscribe(data => {
-            console.log(data);
             if (data.meta && data.meta.code === 200) {
                 this.hasSend = true;
                 this.sendBtnTxt = '重新发送';
@@ -158,7 +153,7 @@ export class CustomerDetail implements OnInit {
                     this.historyRecord.times = true;
                     this.historyRecord.hasSend = true;
                 }
-                alert(data.error && data.error.message);
+                // alert(data.error && data.error.message);
             }
         }, err => {
             console.error(err);

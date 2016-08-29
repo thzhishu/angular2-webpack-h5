@@ -77,4 +77,8 @@ export class Dashboard {
       });
     }
 
+    gotoSearchPage() {
+        this.router.navigate(['/dashboard/search/page']);
+    }
+
 }

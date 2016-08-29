@@ -4,6 +4,7 @@ import { Home } from './home';
 import { NoContent } from './no-content';
 
 import { Dashboard, CustomerList, BusinessListComponent, CustomerAdd, CustomerEdit, CustomerDetail } from './+dashboard';
+import { SearchResult, SearchPage } from './+search';
 
 
 import { Login, Index } from './+login';
@@ -47,6 +48,13 @@ export const ROUTES: Routes = [
           children: [
               { path: '', redirectTo: 'list', pathMatch: 'full'},
               { path: 'list', component: BusinessListComponent }
+          ]
+      },
+      {
+          path: 'search',
+          children: [
+            { path: 'page', component: SearchPage },
+            { path: 'result/:skey', component: SearchResult }
           ]
       }
     ]
