@@ -146,7 +146,6 @@ export class BusinessApi {
     public businessBusinessIdUrlGet (businessId: string, extraHttpRequestParams?: any ) : Observable<models.BusinessCommentURLResponse> {
         let path = this.basePath + '/business/{businessId}/url'
             .replace('{' + 'businessId' + '}', String(businessId));
-            path = path + '?t=' + (new Date()).getTime();
 
         let queryParameters = new URLSearchParams();
         let headerParams = this.defaultHeaders;
@@ -166,11 +165,21 @@ export class BusinessApi {
 
         return this.http.request(path, requestOptions)
             .map((response: Response) => {
-                if (response.status === 401||response.status === 403) {                     window.location.href = '/#/login';                     return undefined;                 } else if (response.status === 204) {
+                console.log(response);
+                if (response.status === 401||response.status === 403) {
+                    window.location.href = '/#/login';
+                    return undefined;
+                } else if (response.status === 204) {
                     return undefined;
                 } else {
-                    if (response.json().meta&&response.json().meta.code === 401) {   alert('您离开时间过长,需要重新登录');                         window.location.href = '/#/login';                     return undefined;}                     return response.json();
+                    if (response.json().meta&&response.json().meta.code === 401) {
+                        alert('您离开时间过长,需要重新登录');
+                        window.location.href = '/#/login';
+                        return undefined;
+                    }
+                    return response.json();
                 }
+                return response.json();
             });
     }
 

@@ -17,7 +17,7 @@ import { BusinessTab } from '../../business-tab';
 @Component({
   selector: 'business-list',
   directives: [
-    ...ROUTER_DIRECTIVES,BusinessTab
+    ...ROUTER_DIRECTIVES, BusinessTab
   ],
   template: require('./list.html'),
   styles: [require('./list.scss')],
@@ -28,7 +28,7 @@ import { BusinessTab } from '../../business-tab';
 export class BusinessListComponent {
   list: BusinessList;
   today: string = moment().format('YYYY-MM-DD');
-  date: string = moment().format('YYYY-MM-DD');
+  date: string = '2016-07-27'||moment().format('YYYY-MM-DD');
   page: any = {};
   dateShow: boolean = false;
   timeout: any;
@@ -57,11 +57,13 @@ export class BusinessListComponent {
   ngOnDestroy() {
     // this.shopChangeSub.unsubscribe();
   }
-  onSwipeLeft(data){
-    data.swipeleft = 1;
+  onSwipeLeft(event) {
+    event.preventDefault();
+    event.target.parentNode.classList.add('swipeleft');
   }
-  onSwipeRight(data){
-     data.swipeleft = 0;
+  onSwipeRight(event) {
+    event.preventDefault();
+    event.target.parentNode.classList.remove('swipeleft');
   }
 
   onToggleDate(event) {
@@ -74,8 +76,8 @@ export class BusinessListComponent {
     this.dateShow = false;
   }
 
-  moment(date,format='') {
-    return moment(date).format(format||'YYYY-MM-DD');
+  moment(date, format = '') {
+    return moment(date).format(format || 'YYYY-MM-DD');
   }
 
 
@@ -94,7 +96,7 @@ export class BusinessListComponent {
     this.getList();
   }
 
-  isToday(){
+  isToday() {
     return moment(this.date).format('YYYY-MM-DD') < moment().format('YYYY-MM-DD');
   }
 

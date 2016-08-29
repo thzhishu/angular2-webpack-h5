@@ -49,7 +49,7 @@ export class CustomerDetail implements OnInit {
                 this.router.navigate(['/dashbroad/customer-list']);
             }
         });
-        
+
     }
     getCustomerById(id) {
         this.cApi.customerHistoryCustomerIdGet(id, this.page.current, this.page.limit).subscribe(data => {
@@ -100,13 +100,11 @@ export class CustomerDetail implements OnInit {
         if (this.hasSend) {
             this.sendBtnTxt = '重新发送';
         }
-        console.log(this.historyRecord);
-        console.log('url: ', this.historyRecord.url);
         if (this.historyRecord.url) {
             this.commentUrl.qrCode = this.historyRecord.qrCode;
             this.commentUrl.url = this.historyRecord.url;
         } else {
-            console.log('888888888888');
+            console.log('888888888888',record.id);
             this.bApi.businessBusinessIdUrlGet(record.id).subscribe(data => {
                 console.log('bapi', data);
                 if (data.meta.code === 200) {
@@ -117,7 +115,7 @@ export class CustomerDetail implements OnInit {
 
             }, err => console.error(err));
         }
-        
+
     }
     // 关闭评价弹出层
     onCloseCommentWin() {

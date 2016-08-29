@@ -21,7 +21,7 @@
                 </div>
                 <a class="cd-slide-eidt" [routerLink]="['/dashboard/customer/edit', customer.id]">编辑</a>
             </div>
-            
+
             <div class="box box-h box-h-c">
                 <div class="bw">性别</div>
                 <div class="flex-1">{{customer?.sex }}</div>
@@ -54,7 +54,7 @@
                 <div class="bw">最后入店时间</div>
                 <div class="flex-1">{{ moment(customer?.lastEnterDate, 'YYYY-MM-DD HH:mm') }}</div>
             </div>
-            
+
         </div>
         <div class="box box-v box-v-cc cd-btn-edit" [class.active]="isUnfold">
             <a [routerLink]="['/dashboard/customer/edit', customer.id]">编辑顾客</a>
@@ -88,23 +88,23 @@
                         </div>
                         <a [routerLink]="['/dashboard/business/edit', hs.id]" class="cd-slide-eidt" >编辑</a>
                     </div>
-                        
+
                     <div class="box box-h hs-comment">
                         <div class="bw">备注</div>
                         <div class="flex-1">
-                            {{hs.description || '-'}} 
+                            {{hs.description || '-'}}
                         </div>
                     </div>
                 </div>
                 <!-- 历史服务列表 end -->
 
-                
-                
+
+
 
             </div>
         </div>
     </div>
-    
+
     <!--<div class="box box-v box-v-cc confirm" *ngIf="showDelWin">
         <div class="box box-v confirm-c">
             <div class="flex-1 confirm-msg">顾客删除后，其相应的服务记录不会删除，是否继续</div>
@@ -128,7 +128,7 @@
                     <h1>方法1</h1>
                     <div>邀请车主手机扫码参加</div>
                     <div class="qrcode">
-                        <!--<img [attr.src]="commentUrl?.qrCode" >-->
+                        <img [attr.src]="commentUrl?.qrCode" >
                     </div>
                 </div>
                 <div class="box ">
