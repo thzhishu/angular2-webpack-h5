@@ -20,6 +20,7 @@ import { AppState } from './app.service';
 import { Home } from './home';
 import { NoContent } from './no-content';
 
+
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -47,7 +48,7 @@ const APP_PROVIDERS = [
     PLATFORM_PROVIDERS,
     ENV_PROVIDERS,
     ROUTING_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
   ]
 })
 export class AppModule {
