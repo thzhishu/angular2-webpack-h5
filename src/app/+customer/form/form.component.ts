@@ -4,6 +4,7 @@ import { CustomerApi, Customer } from 'client';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
     selector: 'customer-form',
@@ -48,6 +49,12 @@ export class CustomerForm implements OnInit {
     vehicleYearArr: any[] = [];
     miles: any[] = [];
     submiting: boolean = false;
+
+    showTipWin: boolean = false;
+    tipMsg: string = '';
+    tipKey: string = '';
+    isAlert: boolean = false;
+    oldFeildString: string = '';
     constructor( private capi: CustomerApi, private router: Router, private route: ActivatedRoute ) {
         const currentYear = +(new Date()).getFullYear();
 		this.birthdayYearArr = this.rangeArr(currentYear - 60, currentYear - 16).reverse();
@@ -78,6 +85,7 @@ export class CustomerForm implements OnInit {
     }
 
     ngOnInit() {
+        this.oldFeildString = Md5.hashStr(JSON.stringify(this.customer), false).toString();
         this.sub = this.route.params.subscribe( params => {
             console.log('customer form params: ', params);
             if (params['id']) {
@@ -114,6 +122,7 @@ export class CustomerForm implements OnInit {
                 this.formatCustomer();
                 this.customerOldPlate = this.tempPlate = this.customer.vehicleLicence;
                 this.customer.valid.plateNull = true;
+                this.oldFeildString = Md5.hashStr(JSON.stringify(this.customer), false).toString();
             }
 		}, err => console.error(err));
 	}
@@ -210,7 +219,29 @@ export class CustomerForm implements OnInit {
     }
 
     back() {
-        window.history.back();
+        if (this.checkFormChange()) {
+            window.history.back();
+        } else {
+            this.showTipWin = true;
+            this.tipMsg = '当前页面尚有信息未保存，是否离开？';
+            this.tipKey = 'back';
+        }
+        
+    }
+    checkFormChange() {
+        const current = Md5.hashStr(JSON.stringify(this.customer), false).toString();
+        return this.oldFeildString === current ? true : false;
+    }
+    onOkey(key) {
+        if (key === 'back') {
+            window.history.back();
+            return;
+        }
+    }
+    onCancel(key) {
+        this.showTipWin = false;
+        this.tipMsg = '';
+        this.tipKey = '';
     }
 
 }
