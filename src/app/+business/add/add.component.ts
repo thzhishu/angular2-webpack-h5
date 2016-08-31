@@ -10,23 +10,21 @@ import { Md5 } from 'ts-md5/dist/md5';
 
 import { BusinessApi, BusinessList, BusinessListResponse } from 'client';
 import { Cookie } from 'services';
-import { BusinessTab } from '../../business-tab';
-import { ScrollableDirective } from '../../directives/scrollable';
 
 
 
 @Component({
-  selector: 'business-list',
+  selector: 'business-add',
   directives: [
-    ...ROUTER_DIRECTIVES, BusinessTab, ScrollableDirective
+    ...ROUTER_DIRECTIVES
   ],
-  template: require('./list.html'),
-  styles: [require('./list.scss')],
+  template: require('./add.html'),
+  styles: [require('./add.scss')],
   providers: [HTTP_PROVIDERS, BusinessApi]
 })
 
 
-export class BusinessListComponent {
+export class BusinessAddComponent {
   list: BusinessList;
   today: string = moment().format('YYYY-MM-DD');
   date: string = '2016-07-27' || moment().format('YYYY-MM-DD');

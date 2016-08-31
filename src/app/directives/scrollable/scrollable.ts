@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Renderer, Output,EventEmitter} from '@angular/core';
+import {Directive, ElementRef, Output,EventEmitter} from '@angular/core';
 
 @Directive({
   selector: '[scrollable]',
@@ -11,7 +11,6 @@ export class ScrollableDirective{
   // @Output('scrollEnd') _scrollEnd: boolean;
   @Output('scrollEnd') _scrollEnd: EventEmitter<any> = new EventEmitter();
   _el: HTMLElement;
-  _renderer: Renderer;
 
   constructor(el:ElementRef){
       this._el = el.nativeElement;
