@@ -58,6 +58,9 @@ input{
     font-size: 20px;
     z-index: 1;
     line-height: 100px;
+    img{
+        vertical-align: middle;
+    }
 }
 .alert-error {
     color: #f16557;

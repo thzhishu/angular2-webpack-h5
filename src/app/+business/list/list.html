@@ -36,6 +36,7 @@
                     <div class="list-del">删除</div>
                 </div>
                 <div class="btn-more" *ngIf="next">
+                    <img  *ngIf="!end" src="/assets/img/loading-circle.gif" alt="" />
                     {{end?'没有更多内容了':'加载中...'}}
                 </div>
             </div>
