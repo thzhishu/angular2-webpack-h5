@@ -9,11 +9,14 @@ import * as _ from 'lodash';
 import { Md5 } from 'ts-md5/dist/md5';
 
 const NO_MENU_URLS = [
-    
+    '/dashboard/customer/add',
+    '/dashboard/customer/edit',
+    '/dashboard/employee/add',
+    '/dashboard/employee/edit'
 ];
 const NO_TOPBAR_URLS = [
     '/dashboard/search/page'
-]
+];
 
 @Component({
     selector: 'dashboard',
@@ -38,7 +41,9 @@ export class Dashboard {
                                           .map(event => event.url)
                                           .subscribe( data => {
                                               console.log('NavigationEnd URL: ', data);
-                                              
+                                              if (data.includes('/edit/')) {
+                                                data = data.slice(0, data.indexOf('/edit/') + 5);
+                                              }
                                               this.noMenu = NO_MENU_URLS.includes(data) ? true : false;
                                               this.noTopbar = NO_TOPBAR_URLS.includes(data) ? true : false;
                                           });

@@ -26,14 +26,18 @@
 import * as models from './models';
 
 /**
- * 员工返回结构
+ * 门店技师编号
  */
-export interface EmployeeResponse {
+export interface ShopCodeItem {
     
 
-    meta?: models.Meta;
+    /**
+     * 关联门店id
+     */
+    shopId?: number;
 
-    data?: models.EmployeeItem;
-
-    error?: models.Error;
+    /**
+     * 技师编号
+     */
+    code?: string;
 }

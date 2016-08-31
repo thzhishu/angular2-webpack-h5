@@ -26,14 +26,48 @@
 import * as models from './models';
 
 /**
- * 员工返回结构
+ * 员工基本信息
  */
-export interface EmployeeResponse {
+export interface EmployeeItem {
     
 
-    meta?: models.Meta;
+    /**
+     * 员工id
+     */
+    id?: number;
 
-    data?: models.EmployeeItem;
+    /**
+     * 姓名
+     */
+    name?: string;
 
-    error?: models.Error;
+    /**
+     * 技师编号
+     */
+    code?: string;
+
+    /**
+     * 技师手机号
+     */
+    mobile?: string;
+
+    /**
+     * 服务次数
+     */
+    serviceTimes?: number;
+
+    /**
+     * 创建时间
+     */
+    createTime?: string;
+
+    /**
+     * 修改时间
+     */
+    updateTime?: string;
+
+    /**
+     * 关联门店信息数组
+     */
+    shops?: Array<models.ShopCodeItem>;
 }

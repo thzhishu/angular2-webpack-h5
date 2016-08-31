@@ -21,8 +21,28 @@
             color:#9a9a9a;
             font-size:18px;
         }
+
+        
+
         form {
             background:#fff;
+        }
+        .employee-form {
+            .r-store {
+                .bw {
+                    width:14px;
+                    height:14px;
+                    margin:0 24px;
+                    transform: rotate(-90deg);
+                    &:before, &:after {
+                        background:#4d4d4d;
+                        width:14px;
+                        height:2px;
+                        margin-top:-1px;
+                    }
+                }
+            }
+                
         }
     }
 }

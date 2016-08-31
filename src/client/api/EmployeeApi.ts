@@ -89,15 +89,14 @@ export class EmployeeApi {
      * @param token 凭证
      * @param employeeId 员工id
      */
-    public employeeEmployeeIdGet(token: string, employeeId: string, extraHttpRequestParams?: any): Observable<models.EmployeeResponse> {
+    
+
+    public employeeEmployeeIdGet (token: string, employeeId: string, extraHttpRequestParams?: any ) : Observable<models.EmployeeResponse> {
         const path = this.basePath + '/employee/{employeeId}'
             .replace('{' + 'employeeId' + '}', String(employeeId));
 
         let queryParameters = new URLSearchParams();
         let headerParams = this.defaultHeaders;
-
-
-
         // verify required parameter 'token' is not null or undefined
         if (token === null || token === undefined) {
             throw new Error('Required parameter token was null or undefined when calling employeeEmployeeIdGet.');
@@ -172,29 +171,41 @@ export class EmployeeApi {
     }
 
     /**
-     * 新建员工
-     *
+     * 新建员工    
+     * 
      * @param name 姓名
      * @param code 技师编号
      * @param mobile 手机号
+     * @param shopIds H5新加关联门店id，多个逗号分隔，服务端需要兼容pc和h5
+     * @param codes H5新加技师编号，多个逗号分隔，服务端需要兼容pc和h5
+     * @param type 1正式，2临时工
      */
-    public employeeSavePost(name?: string, code?: string, mobile?: string, type?: string, extraHttpRequestParams?: any): Observable<models.EmployeeResponse> {
+    
+
+    public employeeSavePost (name?: string, code?: string, mobile?: string, shopIds?: string, codes?: string, type?: string, extraHttpRequestParams?: any ) : Observable<models.EmployeeResponse> {
         const path = this.basePath + '/employee/save';
 
         let queryParameters = new URLSearchParams();
         let headerParams = this.defaultHeaders;
-
-        headerParams.set('token', Cookie.load('token')); //tobeplus 缓存注入 header
-        headerParams.set('shopId', Cookie.load('shopId')); //tobeplus 缓存注入 header
-
         let formParams = new URLSearchParams();
+
+        headerParams.set('token', Cookie.load('token')); // tobeplus 缓存注入 header
+        headerParams.set('shopId', Cookie.load('shopId')); // tobeplus 缓存注入 header
 
         headerParams.set('Content-Type', 'application/x-www-form-urlencoded');
 
-        formParams.append('name', name);
-        formParams.append('code', code);
-        formParams.append('mobile', mobile);
-        formParams.append('type', type ? type : '1');
+        formParams['name'] = name;
+
+        formParams['code'] = code;
+
+        formParams['mobile'] = mobile;
+
+        formParams['shopIds'] = shopIds;
+
+        formParams['codes'] = codes;
+
+        formParams['type'] = type;
+
         let requestOptions: RequestOptionsArgs = {
             method: 'POST',
             headers: headerParams,
@@ -220,23 +231,32 @@ export class EmployeeApi {
      * @param code 技师编号
      * @param mobile 手机号
      */
-    public employeeUpdatePost(id?: string, name?: string, code?: string, mobile?: string, extraHttpRequestParams?: any): Observable<models.EmployeeResponse> {
+    
+
+    public employeeUpdatePost (id?: string, name?: string, shopIds?: string, codes?: string, code?: string, mobile?: string, extraHttpRequestParams?: any ) : Observable<models.EmployeeResponse> {
         const path = this.basePath + '/employee/update';
 
         let queryParameters = new URLSearchParams();
         let headerParams = this.defaultHeaders;
+        let formParams = new URLSearchParams();
 
         headerParams.set('token', Cookie.load('token')); //tobeplus 缓存注入 header
         headerParams.set('shopId', Cookie.load('shopId')); //tobeplus 缓存注入 header
 
-        let formParams = new URLSearchParams();
-
         headerParams.set('Content-Type', 'application/x-www-form-urlencoded');
 
-        formParams.append('id', id);
-        formParams.append('name', name);
-        formParams.append('code', code);
-        formParams.append('mobile', mobile);
+        formParams['id'] = id;
+
+        formParams['name'] = name;
+
+        formParams['shopIds'] = shopIds;
+
+        formParams['codes'] = codes;
+
+        formParams['code'] = code;
+
+        formParams['mobile'] = mobile;
+
         let requestOptions: RequestOptionsArgs = {
             method: 'POST',
             headers: headerParams,
