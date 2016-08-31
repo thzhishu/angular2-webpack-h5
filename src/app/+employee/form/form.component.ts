@@ -6,13 +6,13 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
-    selector: 'customer-form',
+    selector: 'employee-form',
     template: require('./form.template.html'),
     styles: [require('./form.style.scss')],
     directives: [ROUTER_DIRECTIVES],
     providers: [CustomerApi ]
 })
-export class CustomerForm implements OnInit {
+export class EmployeeForm implements OnInit {
     customer: any = {
         id: '',
         vehicleLicence: '',

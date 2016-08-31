@@ -19,12 +19,14 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState } from './app.service';
 import { Home } from './home';
 import { NoContent } from './no-content';
+import { ThzsUtil } from './services/thzs-util.service';
 
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
+  ThzsUtil
 ];
 
 /**

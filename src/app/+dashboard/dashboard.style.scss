@@ -231,3 +231,22 @@
 
 }
 
+.db {
+    &.noMenu {
+        .mbw, .search {
+            display:none;
+        }
+    }
+    &.noTopbar {
+        .db-main {
+            background:none;
+            .db-c {
+                padding:0;
+            }
+            .db-head {
+                display:none;
+            }
+        }
+            
+    }
+}

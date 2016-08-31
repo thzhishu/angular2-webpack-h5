@@ -1,0 +1,28 @@
+.cr {
+    .db-title {
+        .bw {  
+            width:93px;
+        }
+    }
+    .cr-add {
+        height:100%;
+        overflow:hidden;
+    }
+    .cr-form {
+        height:100%;
+        overflow:auto;
+        -webkit-overflow-scrolling:touch;
+        padding-bottom:28px;
+
+        .cr-form-tip {
+            height:48px;
+            line-height: 48px;
+            text-indent: 24px;
+            color:#9a9a9a;
+            font-size:18px;
+        }
+        form {
+            background:#fff;
+        }
+    }
+}

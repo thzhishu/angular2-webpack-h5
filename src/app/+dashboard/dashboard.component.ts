@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
+import { ROUTER_DIRECTIVES, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Http, Response, HTTP_PROVIDERS } from '@angular/http';
 import { UserApi, ShopApi, Shop, MyAcountResponse } from 'client';
 import { Cookie} from 'services';
@@ -7,6 +7,13 @@ import { Cookie} from 'services';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { Md5 } from 'ts-md5/dist/md5';
+
+const NO_MENU_URLS = [
+    
+];
+const NO_TOPBAR_URLS = [
+    '/dashboard/search/page'
+]
 
 @Component({
     selector: 'dashboard',
@@ -22,13 +29,26 @@ export class Dashboard {
     storeName: string;
     shopId: number;
     list: Array<Shop>;
+    routeSub: any;
+    noMenu: boolean = false;
+    noTopbar: boolean = false;
 
     constructor(private router: Router, private uApi: UserApi, private sApi: ShopApi) {
-
+        this.routeSub = this.router.events.filter( event => event instanceof NavigationEnd)
+                                          .map(event => event.url)
+                                          .subscribe( data => {
+                                              console.log('NavigationEnd URL: ', data);
+                                              
+                                              this.noMenu = NO_MENU_URLS.includes(data) ? true : false;
+                                              this.noTopbar = NO_TOPBAR_URLS.includes(data) ? true : false;
+                                          });
     }
 
     ngOnInit() {
       this.getMe();
+    }
+    ngOnDestroy() {
+      this.routeSub.unsubscribe();
     }
 
     onToggleMenu() {

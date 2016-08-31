@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { Home } from './home';
 import { NoContent } from './no-content';
 
-import { Dashboard, CustomerList, BusinessListComponent, CustomerAdd, CustomerEdit, CustomerDetail } from './+dashboard';
+import { Dashboard, CustomerList, BusinessListComponent, CustomerAdd, CustomerEdit, CustomerDetail, EmployeeList, EmployeeAdd, EmployeeEdit } from './+dashboard';
 import { SearchResult, SearchPage } from './+search';
 
 
@@ -41,6 +41,16 @@ export const ROUTES: Routes = [
               { path: 'add', component: CustomerAdd },
               { path: 'edit/:id', component: CustomerEdit },
               { path: 'detail/:id', component: CustomerDetail }
+          ]
+      },
+      {
+          path: 'employee',
+          children: [
+              { path: '', redirectTo: 'list', pathMatch: 'full'},
+              { path: 'list', component: EmployeeList },
+              { path: 'add', component: EmployeeAdd },
+              { path: 'edit/:id', component: EmployeeEdit }
+              // { path: 'detail/:id', component: CustomerDetail }
           ]
       },
       {

@@ -15,6 +15,7 @@ export class SearchResult implements OnInit {
     }
 
     ngOnInit() {
+        
     }
 
 }
