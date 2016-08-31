@@ -29,7 +29,7 @@ export class BusinessEditComponent {
   showTipWin:boolean;
   tipMsg:string;
   tipKey:string;
-  bs:BusinessDetail = {};
+  bs:BusinessDetail = {employeeId:null};
   employeeList: Array<EmployeeListItem>;
 
   constructor(private router: Router, private route: ActivatedRoute, private bApi: BusinessApi,private eApi: EmployeeApi) {
