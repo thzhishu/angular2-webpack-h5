@@ -394,6 +394,18 @@ th {
   font-size:22px;
 }
 
+.cbk-ico {position:relative;padding-left:20px;}
+.cbk-ico input { display:none; }
+.cbk-ico:before, .cbk-ico:after {display:block;position:absolute;content: '';}
+.cbk-ico:before { width:15px; height:15px; left:0; top:5px; border:1px solid #b2c2cc; }
+.cbk-ico:after { opacity:0; width:12px;  height:6px; top:8px; left:2px; border-left:1px solid #fff; border-bottom:1px solid #fff; -moz-transform:rotate(-45deg); -webkit-transform:rotate(-45deg); -ms-transform:rotate(-45deg); transform:rotate(-45deg);}
+.cbk-ico.active:before { background:#8dc63f; }
+.cbk-ico.active:after { opacity:1; }
+
+
+
+
+
 /** 列表 **/
 .list-table {
   display:block;

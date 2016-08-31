@@ -15,8 +15,8 @@
                     <input class="flex-1 fm-ipt" id="ename" name="ename" type="text" maxlength="9" [(ngModel)]="employee.name" >
                 </div>
                 <div class="box box-h box-h-c fm-field r-store">
-                    <label class="fm-label" for="estore" >关联门店:</label>
-                    <input class="flex-1 fm-ipt" id="estore" readonly name="estore" type="text" maxlength="17" [(ngModel)]="employeeShopStr" >
+                    <label class="fm-label"  >关联门店:</label>
+                    <div class="flex-1 fm-ipt"  >{{ employeeShopStr }}</div>
                     <div class="back-ico bw"></div>
                 </div>
                 <div class="box box-h box-h-c fm-field">
@@ -30,4 +30,24 @@
         
     </div>
     
+</div>
+<div class="mask rs-mask" >
+    <div class="mask-win">
+        <div class="add-ico mask-close"></div>
+        <div class="box box-v mask-main">
+            <div class="rs-err-tip">请选择关联门店</div>
+            <div class="flex-1 mask-cont">
+                <div class="box box-h box-h-c">
+                    <label class="cbk-ico ellipsis"><input type="checkbox">所有门店</label>
+                </div>
+                <div class="box box-h box-h-c">
+                    <label class="cbk-ico"><input type="checkbox">南京东路</label>
+                    <input type="text" class="flex-1 ipt" maxlength="20" >
+                </div>
+            </div>
+            <div class="rs-btn">
+                <div class="tc">确定</div>
+            </div>
+        </div>
+    </div>
 </div>

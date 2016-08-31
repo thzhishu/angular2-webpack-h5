@@ -10,7 +10,6 @@ import { CustomerForm } from '../form/form.component';
     directives: [ROUTER_DIRECTIVES, CustomerForm]
 })
 export class CustomerAdd {
-    
     constructor(private router: Router, private route: ActivatedRoute ) {
 
 	}
