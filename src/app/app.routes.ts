@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { Home } from './home';
 import { NoContent } from './no-content';
 
-import { Dashboard, CustomerList, BusinessListComponent, CustomerAdd, CustomerEdit, CustomerDetail, EmployeeList, EmployeeAdd, EmployeeEdit } from './+dashboard';
+import { Dashboard, CustomerList, BusinessListComponent,BusinessAddComponent,BusinessEditComponent, CustomerAdd, CustomerEdit, CustomerDetail, EmployeeList, EmployeeAdd, EmployeeEdit } from './+dashboard';
 import { SearchResult, SearchPage } from './+search';
 
 
@@ -57,7 +57,9 @@ export const ROUTES: Routes = [
           path: 'business',
           children: [
               { path: '', redirectTo: 'list', pathMatch: 'full'},
-              { path: 'list', component: BusinessListComponent }
+              { path: 'list', component: BusinessListComponent },
+              { path: 'add', component: BusinessAddComponent },
+              { path: 'edit/:id', component: BusinessEditComponent },
           ]
       },
       {

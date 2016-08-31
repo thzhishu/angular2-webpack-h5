@@ -1,10 +1,14 @@
-import { Business } from './business.component';
-import { Index } from './index.component';
+import { BusinessListComponent } from './list';
+import { BusinessAddComponent } from './add';
+import { BusinessEditComponent } from './edit';
 
 // async components must be named routes for WebpackAsyncRoute
-export const routes = {
-  path: 'login', component: Business,
+export const businessRoutes = {
+  path: 'business',
   children: [
-    { path: '', component: Index }
+      { path: '', redirectTo: 'list', pathMatch: 'full'},
+      { path: 'list', component: BusinessListComponent },
+      { path: 'add', component: BusinessAddComponent },
+      { path: 'edit/:id', component: BusinessEditComponent },
   ]
 };

@@ -12,7 +12,9 @@ const NO_MENU_URLS = [
     '/dashboard/customer/add',
     '/dashboard/customer/edit',
     '/dashboard/employee/add',
-    '/dashboard/employee/edit'
+    '/dashboard/employee/edit',
+    '/dashboard/business/add',
+    '/dashboard/business/edit',
 ];
 const NO_TOPBAR_URLS = [
     '/dashboard/search/page'
@@ -47,7 +49,7 @@ export class Dashboard {
                                               this.noMenu = NO_MENU_URLS.includes(data) ? true : false;
                                               this.noTopbar = NO_TOPBAR_URLS.includes(data) ? true : false;
                                           });
-    }
+                                    }
 
     ngOnInit() {
       this.getMe();
@@ -66,7 +68,6 @@ export class Dashboard {
         this.showStoreLayer = false;
     }
     onToggleStoreLayer(e) {
-        console.log(e);
         e.stopPropagation();
         this.showStoreLayer = !this.showStoreLayer;
     }
@@ -94,7 +95,7 @@ export class Dashboard {
         this.storeName = item.name;
         Cookie.save('shopId', item.id);
         if (this.router.url === '/dashboard/business/list') {
-
+            window.location.reload();
         } else {
           this.router.navigate(['/dashboard/business/list']);
         }
