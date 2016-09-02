@@ -168,5 +168,8 @@ export class CustomerDetail implements OnInit {
         this.sendErr.times = false;
     }
 
+    onAddNewCustomer() {
+        this.router.navigate(['/dashboard/customer/add']);
+    }
 
 }

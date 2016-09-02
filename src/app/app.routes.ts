@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { Home } from './home';
 import { NoContent } from './no-content';
 
-import { Dashboard, CustomerList, BusinessListComponent,BusinessAddComponent,BusinessEditComponent, CustomerAdd, CustomerEdit, CustomerDetail, EmployeeList, EmployeeAdd, EmployeeEdit } from './+dashboard';
+import { Dashboard, CustomerList, BusinessListComponent, BusinessAddComponent, BusinessEditComponent, CustomerAdd, CustomerEdit, CustomerDetail, EmployeeList, EmployeeAdd, EmployeeEdit, ReportWeek } from './+dashboard';
 import { SearchResult, SearchPage } from './+search';
 
 
@@ -67,6 +67,12 @@ export const ROUTES: Routes = [
           children: [
             { path: 'page', component: SearchPage },
             { path: 'result/:skey', component: SearchResult }
+          ]
+      },
+      {
+          path: 'report',
+          children: [
+            { path: 'week', component: ReportWeek }
           ]
       }
     ]

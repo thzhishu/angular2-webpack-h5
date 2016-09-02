@@ -551,3 +551,5 @@ th {
 .s-topbar .s-ipt i { display:block; position:absolute; top:50%; right:12px; margin-top:-14px; background:#c7c7c7; width:28px; height:28px; border-radius: 50%; -webkit-transform: rotate(45deg); transform: rotate(45deg); margin-left:12px; }
 .s-topbar .s-ipt .add-ico:before { width:12px; height:2px; top:50%; left: 50%; margin: -1px 0 0 -6px; }
 .s-topbar .s-ipt .add-ico:after { width:2px; height:12px; top:50%; left: 50%; margin: -6px 0 0 -1px; }
+
+.f-del-btn { height:60px;line-height: 60px; text-align: center; color:#fff; font-size: 22px; background:#f16557; border-radius:8px; }
